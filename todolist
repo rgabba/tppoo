@@ -1,0 +1,14 @@
+Bom pessoal, aqui vai umas coisas q devemos pensar:
+
+Como é implementado o map ou a lista encadeada no java, para utilizarmos essa ferramenta, caso a classe que a utiliza deva ser uma implementação da classe, nós já estamos pensando errado, caso não deva ser, podemos usar uma lista encadeada mesmo para os funcionários igual o Lucas tinha pensado.
+
+As janelas devem abrir sempre no centro da tela!
+Os formulários devem ser implementados em JDialog, para que o usuario não possa usar a janela que o chamou enquanto ele ainda está aberto.
+
+Como criaremos a lista de funcionários e/ou pedidos na interface, sendo que a de funcionarios deva ter a opção excluir?
+        Para a questao acima, talvez seja viável colocarmos escutadores de dois cliques para cara opção da lista, ou, talvez         usarmos checkboxes para cada lista e um botão excluir logo abaixo, mas aqui teremos o inconveniente de ter de setar         um tamanho máximo para o JPanel que conteria a lista exibida, já que o botão teria sempre de aparecer, ou colocamos         o botão em cima.
+        
+        
+Outras questões sobre o que fazer e caso tenham, as soluções, coloquem nesse arquivo, ou criem um outro, ou então, comentem no código ou no commit.
+
+Abraço.
