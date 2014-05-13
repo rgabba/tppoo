@@ -11,8 +11,14 @@ package servesystem;
  * @author User
  */
 public class Pessoa {
-    private String nome;
-    private String telefone;
+    //Vamos dar preferencia a chaves protected principalmente em classes com subclasses!
+    //chaves private certamente causarão problemas.
+    protected String nome;
+    protected String telefone;
+    //Excluamos esse construtor posteriormente, so foi adicionado para as subclasses pararem de dar piti!
+    Pessoa()
+    {
+    }
     Pessoa(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
