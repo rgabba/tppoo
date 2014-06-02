@@ -22,6 +22,11 @@ public class ServeSystem {
         /*Olá amiguinhos*/
         
         /* Olá zoobomafoo*/
+        JanelaInicial teste = new JanelaInicial();
+        teste.setSize(340, 150);
+        teste.setLocationRelativeTo(null);
+        teste.setResizable(true);
+        teste.setVisible(true);
     }
     
 }
