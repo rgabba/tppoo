@@ -11,5 +11,15 @@ package servesystem;
  * @author User
  */
 public class Funcionario extends Pessoa {
+    protected String email;
+    protected String cargo;
+    protected String nMatricula;
+    Funcionario(String nome, String telefone, String email, String cargo) {
+        super(nome, telefone);
+        this.email = email;
+        this.cargo = cargo;
+        /*this.nMatricula = INVENTAR ALGUM GERADOR DE CODIGO SEQUENCIAL;*/
+    }
+    
     
 }
