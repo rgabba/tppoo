@@ -12,10 +12,10 @@ import javax.swing.*;
 
 /**
  *
- * @author Raul
+ * @author User
  */
-public class JanelaCliente extends MainGUI {
-     //Manipulador de botões
+public class JanelaCadastroCliente extends MainGUI {
+    //Manipulador de botões
     ManipulaButtonField manipuladorbotao = new ManipulaButtonField ();
     
     //Caixas mostradoras de tempo
@@ -35,7 +35,7 @@ public class JanelaCliente extends MainGUI {
      private JPanel pan_cpf =  new JPanel();
      private JPanel pan_bot = new JPanel();
       
-     JanelaCliente ()
+     JanelaCadastroCliente()
      {
          super ("Bem vindo à Serve!");
          setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -59,15 +59,6 @@ public class JanelaCliente extends MainGUI {
          container.add(pan_bot);
          
      }
-     
-     private void janCadastroCliente ()
-    {
-        JanelaCadastroCliente jan_cadastroCliente = new JanelaCadastroCliente();
-        jan_cadastroCliente.setSize(430, 150);
-        jan_cadastroCliente.setLocationRelativeTo(null);
-        jan_cadastroCliente.setResizable(true);
-        jan_cadastroCliente.setVisible(true); 
-    }
       
       private class ManipulaButtonField implements ActionListener{
         public void actionPerformed(ActionEvent evento){
@@ -89,5 +80,4 @@ public class JanelaCliente extends MainGUI {
         }
     
     }
-    
 }

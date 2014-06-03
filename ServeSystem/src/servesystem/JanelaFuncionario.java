@@ -14,77 +14,69 @@ import javax.swing.*;
  *
  * @author Raul
  */
-public class JanelaCliente extends MainGUI {
+public class JanelaFuncionario extends MainGUI {
      //Manipulador de botões
     ManipulaButtonField manipuladorbotao = new ManipulaButtonField ();
     
     //Caixas mostradoras de tempo
-    private JTextField text_nome = new JTextField(30);
-    private JTextField text_cpf = new JTextField(9);
+    private JTextField text_nMat = new JTextField(30);
     
     //Botoes para extender bateria e alterar hora
     private JButton confirma = new JButton ("Confirma");
     private JButton cancela = new JButton ("Cancela");
+    private JButton cadastro = new JButton ("Cadastrar");
     
     //Rótulos
-     private JLabel rotulo_nome = new JLabel ("Nome:");
-     private JLabel rotulo_cpf = new JLabel ("CPF: ");
+     private JLabel rotulo_nMat = new JLabel ("Numero de Matricula:");
      
      //Painéis
-     private JPanel pan_nome = new JPanel();
-     private JPanel pan_cpf =  new JPanel();
+     private JPanel pan_nMat = new JPanel();
      private JPanel pan_bot = new JPanel();
       
-     JanelaCliente ()
+     JanelaFuncionario ()
      {
          super ("Bem vindo à Serve!");
          setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
          container.setLayout(new BoxLayout(container, 1));
          
-         pan_nome.setLayout (new FlowLayout());
-         pan_cpf.setLayout (new FlowLayout());
+         pan_nMat.setLayout (new FlowLayout());
          pan_bot.setLayout (new FlowLayout());
          
-         pan_nome.add(rotulo_nome);
-         pan_nome.add(text_nome);
-         pan_cpf.add(rotulo_cpf);
-         pan_cpf.add(text_cpf);
+         pan_nMat.add(rotulo_nMat);
+         pan_nMat.add(text_nMat);
          pan_bot.add (confirma);
          pan_bot.add (cancela);
+         pan_bot.add (cadastro);
          
          confirma.addActionListener(manipuladorbotao);
          cancela.addActionListener(manipuladorbotao);
-         container.add(pan_nome);
-         container.add(pan_cpf);
-         container.add(pan_bot);
-         
-     }
+         cadastro.addActionListener(manipuladorbotao);
+         container.add(pan_nMat);
+         container.add(pan_bot);         
+    }
      
-     private void janCadastroCliente ()
-    {
-        JanelaCadastroCliente jan_cadastroCliente = new JanelaCadastroCliente();
-        jan_cadastroCliente.setSize(430, 150);
-        jan_cadastroCliente.setLocationRelativeTo(null);
-        jan_cadastroCliente.setResizable(true);
-        jan_cadastroCliente.setVisible(true); 
+    private void janCadastroFunc() {
+        JanelaCadastroFunc jan_cadastroFunc = new JanelaCadastroFunc();
+        jan_cadastroFunc.setSize(430, 200);
+        jan_cadastroFunc.setLocationRelativeTo(null);
+        jan_cadastroFunc.setResizable(true);
+        jan_cadastroFunc.setVisible(true); 
     }
       
       private class ManipulaButtonField implements ActionListener{
         public void actionPerformed(ActionEvent evento){
             if(evento.getSource() == confirma)
                 {
-                    if (Pessoa.CPFVerify(text_cpf.getText())==false)
-                    {
-                        JOptionPane.showMessageDialog(null, "O CPF " + text_cpf.getText() +" é inválido, tente novamente");
-                    }
-                    else
-                    {
-                            /*Verifica se está no banco de dados, se sim, carrega, se não adiciona*/
-                    }
+                    
+                    /*Verifica se numero de matricula é valido, caso positivo, verifica se está no banco de dados, caso negativo, chama função para adicionar*/
                 }
             if(evento.getSource() == cancela)
                 {
                     dispose();
+                }
+            if(evento.getSource() == cadastro)
+                {
+                    janCadastroFunc();
                 }
         }
     

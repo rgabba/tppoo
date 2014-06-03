@@ -54,11 +54,15 @@ public class JanelaInicial extends MainGUI{
          container.add(botoes);
      }
 
-   private void janfunc()
+   private void janFunc()
    {
-       
+        JanelaFuncionario jan_funcionario = new JanelaFuncionario();
+        jan_funcionario.setSize(430, 150);
+        jan_funcionario.setLocationRelativeTo(null);
+        jan_funcionario.setResizable(true);
+        jan_funcionario.setVisible(true); 
    }
-    private void jancliente ()
+    private void janCliente ()
     {
         JanelaCliente jan_cliente = new JanelaCliente();
         jan_cliente.setSize(430, 150);
@@ -71,11 +75,11 @@ public class JanelaInicial extends MainGUI{
         public void actionPerformed(ActionEvent evento){
             if(evento.getSource() == funcionario)
                 {
-                    janfunc();
+                    janFunc();
                 }
             if(evento.getSource() == cliente)
                {
-                    jancliente();
+                    janCliente();
                 }
         }
     
