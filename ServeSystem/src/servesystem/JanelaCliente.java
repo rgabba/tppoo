@@ -35,8 +35,7 @@ public class JanelaCliente extends MainGUI {
      private JPanel pan_cpf =  new JPanel();
      private JPanel pan_bot = new JPanel();
       
-     JanelaCliente ()
-     {
+     JanelaCliente () {
          super ("Bem vindo à Serve!");
          setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
          container.setLayout(new BoxLayout(container, 1));
@@ -60,10 +59,9 @@ public class JanelaCliente extends MainGUI {
          
      }
      
-     private void janCadastroCliente ()
-    {
-        JanelaCadastroCliente jan_cadastroCliente = new JanelaCadastroCliente();
-        jan_cadastroCliente.setSize(430, 150);
+     private void janCadastroCliente(String nome, String cpf) {
+        JanelaCadastroCliente jan_cadastroCliente = new JanelaCadastroCliente(nome, cpf);
+        jan_cadastroCliente.setSize(430, 250);
         jan_cadastroCliente.setLocationRelativeTo(null);
         jan_cadastroCliente.setResizable(true);
         jan_cadastroCliente.setVisible(true); 
@@ -79,7 +77,10 @@ public class JanelaCliente extends MainGUI {
                     }
                     else
                     {
+                        //if(tánobanco) login;
                             /*Verifica se está no banco de dados, se sim, carrega, se não adiciona*/
+                        /*else*/ 
+                        janCadastroCliente(text_nome.getText(), text_cpf.getText());
                     }
                 }
             if(evento.getSource() == cancela)

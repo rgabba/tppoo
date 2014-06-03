@@ -38,7 +38,6 @@ public class JanelaCadastroFunc extends MainGUI {
      private JPanel pan_nome = new JPanel();
      private JPanel pan_email =  new JPanel();
      private JPanel pan_telefone =  new JPanel();
-     private JPanel pan_cargo =  new JPanel();
      private JPanel pan_bot = new JPanel();
       
      JanelaCadastroFunc ()
@@ -50,7 +49,6 @@ public class JanelaCadastroFunc extends MainGUI {
          pan_nome.setLayout (new FlowLayout());
          pan_email.setLayout (new FlowLayout());
          pan_telefone.setLayout (new FlowLayout());
-         pan_cargo.setLayout (new FlowLayout());
          pan_bot.setLayout (new FlowLayout());
          
          pan_nome.add(rotulo_nome);
@@ -69,7 +67,6 @@ public class JanelaCadastroFunc extends MainGUI {
          container.add(pan_nome);
          container.add(pan_email);
          container.add(pan_telefone);
-         container.add(pan_cargo);
          container.add(pan_bot);
          
      }

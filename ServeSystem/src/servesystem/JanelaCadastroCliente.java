@@ -18,37 +18,65 @@ public class JanelaCadastroCliente extends MainGUI {
     //Manipulador de botões
     ManipulaButtonField manipuladorbotao = new ManipulaButtonField ();
     
-    //Caixas mostradoras de tempo
+    //Caixas de texto
     private JTextField text_nome = new JTextField(30);
-    private JTextField text_cpf = new JTextField(9);
+    private JTextField text_cpf = new JTextField(11);
+    private JTextField text_identidade = new JTextField(10);
+    private JTextField text_email = new JTextField(30);
+    private JTextField text_telefone = new JTextField(10);
+    private JTextField text_endereco = new JTextField(30);
+    private JTextField text_dataNasc = new JTextField(10);
     
-    //Botoes para extender bateria e alterar hora
+    //Botoes
     private JButton confirma = new JButton ("Confirma");
     private JButton cancela = new JButton ("Cancela");
     
     //Rótulos
      private JLabel rotulo_nome = new JLabel ("Nome:");
-     private JLabel rotulo_cpf = new JLabel ("CPF: ");
+     private JLabel rotulo_cpf = new JLabel ("CPF:");
+     private JLabel rotulo_identidade = new JLabel ("Identidade:");
+     private JLabel rotulo_email = new JLabel ("E-mail: ");
+     private JLabel rotulo_telefone = new JLabel ("Tel.: ");
+     private JLabel rotulo_endereco = new JLabel ("Endereço: ");
+     private JLabel rotulo_dataNasc = new JLabel ("Data de Nasc.: ");
      
      //Painéis
      private JPanel pan_nome = new JPanel();
-     private JPanel pan_cpf =  new JPanel();
+     private JPanel pan_cpf = new JPanel();
+     private JPanel pan_email =  new JPanel();
+     private JPanel pan_endereco =  new JPanel();
+     private JPanel pan_telefone =  new JPanel();
      private JPanel pan_bot = new JPanel();
       
-     JanelaCadastroCliente()
+     JanelaCadastroCliente (String nome, String cpf)
      {
          super ("Bem vindo à Serve!");
+         text_nome.setText(nome);
+         text_cpf.setText(cpf);
          setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
          container.setLayout(new BoxLayout(container, 1));
          
          pan_nome.setLayout (new FlowLayout());
          pan_cpf.setLayout (new FlowLayout());
+         pan_email.setLayout (new FlowLayout());
+         pan_endereco.setLayout (new FlowLayout());
+         pan_telefone.setLayout (new FlowLayout());
          pan_bot.setLayout (new FlowLayout());
          
          pan_nome.add(rotulo_nome);
          pan_nome.add(text_nome);
          pan_cpf.add(rotulo_cpf);
          pan_cpf.add(text_cpf);
+         pan_cpf.add(rotulo_identidade);
+         pan_cpf.add(text_identidade);
+         pan_email.add(rotulo_email);
+         pan_email.add(text_email);
+         pan_endereco.add(rotulo_endereco);
+         pan_endereco.add(text_endereco);
+         pan_telefone.add(rotulo_telefone);
+         pan_telefone.add(text_telefone);
+         pan_telefone.add(rotulo_dataNasc);
+         pan_telefone.add(text_dataNasc);
          pan_bot.add (confirma);
          pan_bot.add (cancela);
          
@@ -56,6 +84,9 @@ public class JanelaCadastroCliente extends MainGUI {
          cancela.addActionListener(manipuladorbotao);
          container.add(pan_nome);
          container.add(pan_cpf);
+         container.add(pan_email);
+         container.add(pan_endereco);
+         container.add(pan_telefone);
          container.add(pan_bot);
          
      }
@@ -64,14 +95,9 @@ public class JanelaCadastroCliente extends MainGUI {
         public void actionPerformed(ActionEvent evento){
             if(evento.getSource() == confirma)
                 {
-                    if (Pessoa.CPFVerify(text_cpf.getText())==false)
-                    {
-                        JOptionPane.showMessageDialog(null, "O CPF " + text_cpf.getText() +" é inválido, tente novamente");
-                    }
-                    else
-                    {
-                            /*Verifica se está no banco de dados, se sim, carrega, se não adiciona*/
-                    }
+                    
+                    JOptionPane.showMessageDialog(null, "Cadastro concluído.");
+                    //!!como vai fazer a gravação de cada instancia? no momento da criação dela aqui ou pelo construtor de Funcionario?
                 }
             if(evento.getSource() == cancela)
                 {
