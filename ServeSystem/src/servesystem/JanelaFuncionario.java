@@ -45,8 +45,9 @@ public class JanelaFuncionario extends MainGUI {
          pan_nMat.add(rotulo_nMat);
          pan_nMat.add(text_nMat);
          pan_bot.add (confirma);
-         pan_bot.add (cancela);
          pan_bot.add (cadastro);
+         pan_bot.add (cancela);
+         
          
          confirma.addActionListener(manipuladorbotao);
          cancela.addActionListener(manipuladorbotao);
