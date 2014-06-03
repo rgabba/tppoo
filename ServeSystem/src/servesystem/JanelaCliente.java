@@ -20,7 +20,7 @@ public class JanelaCliente extends MainGUI {
     
     //Caixas mostradoras de tempo
     private JTextField text_nome = new JTextField(30);
-    private JTextField text_cpf = new JTextField(11);
+    private JTextField text_cpf = new JTextField(9);
     
     //Botoes para extender bateria e alterar hora
     private JButton confirma = new JButton ("Confirma");
@@ -58,20 +58,20 @@ public class JanelaCliente extends MainGUI {
          container.add(pan_cpf);
          container.add(pan_bot);
          
-         
-         
-         
-         
-         
-         
      }
       
       private class ManipulaButtonField implements ActionListener{
         public void actionPerformed(ActionEvent evento){
             if(evento.getSource() == confirma)
                 {
-                    
-                    /*Verifica se cpf é valido, caso positivo, verifica se está no banco de dados, caso negativo, chama função para adicionar*/
+                    if (Pessoa.CPFVerify(text_cpf.getText())==false)
+                    {
+                        JOptionPane.showMessageDialog(null, "O CPF " + text_cpf.getText() +" é inválido, tente novamente");
+                    }
+                    else
+                    {
+                            /*Verifica se está no banco de dados, se sim, carrega, se não adiciona*/
+                    }
                 }
             if(evento.getSource() == cancela)
                 {
