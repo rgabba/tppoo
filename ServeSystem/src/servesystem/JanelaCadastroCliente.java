@@ -98,6 +98,7 @@ public class JanelaCadastroCliente extends MainGUI {
                     
                     JOptionPane.showMessageDialog(null, "Cadastro concluído.");
                     //!!como vai fazer a gravação de cada instancia? no momento da criação dela aqui ou pelo construtor de Funcionario?
+                    dispose();
                 }
             if(evento.getSource() == cancela)
                 {

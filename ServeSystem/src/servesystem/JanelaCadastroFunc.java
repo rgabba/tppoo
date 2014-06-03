@@ -77,7 +77,11 @@ public class JanelaCadastroFunc extends MainGUI {
                 {
                     Funcionario novoFunc = new Funcionario(text_nome.getText(), text_telefone.getText(), text_email.getText(), text_cargo.getText());
                     JOptionPane.showMessageDialog(null, "Cadastro concluído. Número de Matrícula: " + novoFunc.getMatricula());
+                    
+                    
+                    
                     //!!como vai fazer a gravação de cada instancia? no momento da criação dela aqui ou pelo construtor de Funcionario?
+                    dispose();
                 }
             if(evento.getSource() == cancela)
                 {

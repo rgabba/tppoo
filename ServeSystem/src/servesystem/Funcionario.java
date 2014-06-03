@@ -14,7 +14,7 @@ import java.util.Random; //usado para atribuicao do nº de matricula
  *
  * @author User
  */
-public class Funcionario extends Pessoa {
+public class Funcionario extends Pessoa implements Serializable { //serializable para poder salvar em arquivo
     protected String email;
     protected String cargo;
     protected String nMatricula;

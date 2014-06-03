@@ -6,11 +6,13 @@
 
 package servesystem;
 
+import java.io.*;
+
 /**
  *
  * @author User
  */
-public class Cliente extends Pessoa {
+public class Cliente extends Pessoa implements Serializable { //serializable para poder salvar em arquivo
     protected String identidade;
     protected String cpf;
     protected String endereco;
