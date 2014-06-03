@@ -17,9 +17,10 @@ public class Solicitacao {
     protected int id;
     protected Cliente solicitante;
     protected String profSolicitado;
-    protected String descricao;
+    protected String descricaoSolicitacao;
     protected Funcionario tecnicoEncarregado;
-    protected String orcamento;
+    protected float orcamento;
+    protected String descricaoOrcamento;
     protected Date dataDeSolicitacao;
     /*implementar alguma variável de estado para a solicitação seguindo o que tá no pdf:
     1. Cadastrada – o usuário deu entrada e a solicitação está arquivada. 
@@ -38,7 +39,7 @@ public class Solicitacao {
     Solicitacao(Cliente solicitante, String profSolicitado, String descricao) {
         this.solicitante = solicitante;
         this.profSolicitado = profSolicitado;
-        this.descricao = descricao;
+        this.descricaoSolicitacao = descricao;
         this.id = count;
         count++;
         this.dataDeSolicitacao = new Date(); //automaticamente seta a data atual 

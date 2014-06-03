@@ -63,6 +63,14 @@ public class JanelaFuncionario extends MainGUI {
         jan_cadastroFunc.setResizable(true);
         jan_cadastroFunc.setVisible(true); 
     }
+    
+    private void janSolicitacoesFunc(String nMat) {
+        JanelaSolicitacoesFunc jan_solicitacoesFunc = new JanelaSolicitacoesFunc(nMat);
+        jan_solicitacoesFunc.setSize(430, 200);
+        jan_solicitacoesFunc.setLocationRelativeTo(null);
+        jan_solicitacoesFunc.setResizable(true);
+        jan_solicitacoesFunc.setVisible(true); 
+    }     
       
       private class ManipulaButtonField implements ActionListener{
         public void actionPerformed(ActionEvent evento){
@@ -70,6 +78,8 @@ public class JanelaFuncionario extends MainGUI {
                 {
                     
                     /*Verifica se numero de matricula é valido, caso positivo, verifica se está no banco de dados, caso negativo, chama função para adicionar*/
+                    /*else*/
+                    janSolicitacoesFunc(text_nMat.getText());
                 }
             if(evento.getSource() == cancela)
                 {
