@@ -18,6 +18,7 @@ public class Cliente extends Pessoa implements Serializable { //serializable par
     protected String endereco;
     protected String dataNasc;
     protected String dataCadastro;
+    
     Cliente(String nome, String telefone, String identidade, String cpf, String endereco, String dataNasc, String dataCadastro) {
         super(nome, telefone);
         this.identidade = identidade;
@@ -25,6 +26,15 @@ public class Cliente extends Pessoa implements Serializable { //serializable par
         this.endereco = endereco;
         this.dataNasc = dataNasc;
         this.dataCadastro = dataCadastro;
+    }
+    /*Data do cadastro é realmente necessário?*/
+        Cliente(String nome, String telefone, String identidade, String cpf, String endereco, String dataNasc/*, String dataCadastro*/) {
+        super(nome, telefone);
+        this.identidade = identidade;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.dataNasc = dataNasc;
+        //this.dataCadastro = dataCadastro;
     }
     
 }

@@ -77,11 +77,19 @@ public class JanelaCliente extends MainGUI {
                     }
                     else
                     {
-                        //if(tánobanco) login;
+                        if(ServeSystem.verifycpfcadastro(text_cpf.getText())==true) 
+                        {
+                            //Carrega cliente
+                            Cliente clienteatual = ServeSystem.cpfcadastrado(text_cpf.getText());
+                            JOptionPane.showMessageDialog(null, "Bem vindo " + clienteatual.nome + "!");
+                            /*O que fazer agora?*/
+                        }
                             /*Verifica se está no banco de dados, se sim, carrega, se não adiciona*/
-                        /*else*/ 
-                        JOptionPane.showMessageDialog(null, "Cliente não cadastrado, por favor preencha o formulário a seguir.");
-                        janCadastroCliente(text_nome.getText(), text_cpf.getText());
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Cliente não cadastrado, por favor preencha o formulário a seguir.");
+                            janCadastroCliente(text_nome.getText(), text_cpf.getText());
+                        }
                     }
                 }
             if(evento.getSource() == cancela)

@@ -22,6 +22,9 @@ public class JanelaInicial extends MainGUI{
     private JButton funcionario = new JButton ("Funcionário");
     private JButton cliente = new JButton ("Cliente");
     
+    /*A ser removido posteriormente*/
+    private JButton clientes = new JButton ("Mostrar clientes");
+    
     
     //Rótulos
      private JLabel rotulo = new JLabel ("Bem vindo à Serve!");
@@ -43,8 +46,10 @@ public class JanelaInicial extends MainGUI{
 
          cliente.addActionListener(manipuladorbotao);
          funcionario.addActionListener(manipuladorbotao);
+         clientes.addActionListener(manipuladorbotao);
          
          botoes.add(cliente);
+         botoes.add(clientes);
          botoes.add(funcionario);    
          rot.add(rotulo);
          rot2.add(rotulo2);
@@ -81,6 +86,10 @@ public class JanelaInicial extends MainGUI{
                {
                     janCliente();
                 }
+            if (evento.getSource() == clientes)
+            {
+                ServeSystem.mostraclientesterminal();
+            }
         }
     
     }

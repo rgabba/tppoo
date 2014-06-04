@@ -104,8 +104,19 @@ public class JanelaCadastroCliente extends MainGUI {
         public void actionPerformed(ActionEvent evento){
             if(evento.getSource() == confirma)
                 {
+                    String nome = text_nome.getText();
+                    String ident = text_identidade.getText();
+                    String tel = text_telefone.getText();
+                    String cpf = text_cpf.getText();
+                    String email = text_email.getText();
+                    String ender = text_endereco.getText();
+                    String nasc = text_dataNasc.getText();
                     
-                    JOptionPane.showMessageDialog(null, "Cadastro concluído.");
+                    boolean confirm = ServeSystem.addcliente(nome,tel,cpf,ident,email,ender,nasc);
+                    if (confirm == true)
+                        JOptionPane.showMessageDialog(null, "Cadastro concluído.");
+                    else
+                        JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente, tente novamente");
                     //!!como vai fazer a gravação de cada instancia? no momento da criação dela aqui ou pelo construtor de Funcionario?
                     dispose();
                 }

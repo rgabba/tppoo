@@ -15,6 +15,12 @@ public class Pessoa {
     //chaves private certamente causarão problemas.
     protected String nome;
     protected String telefone;
+    
+    Pessoa(String nome)
+    {
+        this.nome=nome;
+    }
+    
     Pessoa(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
