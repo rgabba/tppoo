@@ -76,16 +76,18 @@ public class JanelaCadastroFunc extends MainGUI {
          
      }
       
-      private class ManipulaButtonField implements ActionListener{
+    private class ManipulaButtonField implements ActionListener{
         public void actionPerformed(ActionEvent evento){
             if(evento.getSource() == confirma)
                 {
                     Funcionario novoFunc = new Funcionario(text_nome.getText(), text_telefone.getText(), text_email.getText(), text_cargo.getText());
-                    JOptionPane.showMessageDialog(null, "Cadastro concluído. Número de Matrícula: " + novoFunc.getMatricula());
+                    ServeSystem.addFuncionario(novoFunc);
+                    boolean confirm = ServeSystem.addFuncionario(novoFunc);
+                    if (confirm == true)
+                        JOptionPane.showMessageDialog(null, "Cadastro concluído. Número de Matrícula: " + novoFunc.nMatricula);
+                    else
+                        JOptionPane.showMessageDialog(null, "Erro ao cadastrar funcionário, tente novamente");
                     
-                    
-                    
-                    //!!como vai fazer a gravação de cada instancia? no momento da criação dela aqui ou pelo construtor de Funcionario?
                     dispose();
                 }
             if(evento.getSource() == cancela)

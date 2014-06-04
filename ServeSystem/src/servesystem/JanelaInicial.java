@@ -27,37 +27,40 @@ public class JanelaInicial extends MainGUI{
     
     
     //Rótulos
-     private JLabel rotulo = new JLabel ("Bem vindo à Serve!");
-     private JLabel rotulo2 = new JLabel ("Você é um:");
+    private JLabel rotulo = new JLabel ("Bem vindo à Serve!");
+    private JLabel rotulo2 = new JLabel ("Você é um:");
      
     private JPanel botoes = new JPanel();
+    private JPanel botoes2 = new JPanel();
     private JPanel rot = new JPanel();
     private JPanel rot2 = new JPanel();
    
     JanelaInicial()
-     {
-         super ("Sistema Serve");
-         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-         container.setLayout(new BoxLayout(container, 1));
-         
-         botoes.setLayout (new FlowLayout());
-         rot.setLayout (new FlowLayout());
-         rot2.setLayout (new FlowLayout());
+    {
+        super ("Sistema Serve");
+        setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        container.setLayout(new BoxLayout(container, 1));
 
-         cliente.addActionListener(manipuladorbotao);
-         funcionario.addActionListener(manipuladorbotao);
-         clientes.addActionListener(manipuladorbotao);
-         
-         botoes.add(cliente);
-         botoes.add(clientes);
-         botoes.add(funcionario);    
-         rot.add(rotulo);
-         rot2.add(rotulo2);
-         
-         container.add(rot);
-         container.add(rot2);
-         container.add(botoes);
-     }
+        botoes.setLayout (new FlowLayout());
+        botoes2.setLayout (new FlowLayout());
+        rot.setLayout (new FlowLayout());
+        rot2.setLayout (new FlowLayout());
+
+        cliente.addActionListener(manipuladorbotao);
+        funcionario.addActionListener(manipuladorbotao);
+        clientes.addActionListener(manipuladorbotao);
+
+        botoes.add(cliente);
+        botoes2.add(clientes);
+        botoes.add(funcionario);    
+        rot.add(rotulo);
+        rot2.add(rotulo2);
+
+        container.add(rot);
+        container.add(rot2);
+        container.add(botoes);
+        container.add(botoes2); //INTENCIONALMENTE FORA DO LAYOUT PARA SER RETIRADO DEPOIS
+    }
 
    private void janFunc()
    {
@@ -67,7 +70,7 @@ public class JanelaInicial extends MainGUI{
         jan_funcionario.setResizable(true);
         jan_funcionario.setVisible(true); 
    }
-    private void janCliente ()
+    private void janCliente()
     {
         JanelaCliente jan_cliente = new JanelaCliente();
         jan_cliente.setSize(430, 150);
@@ -76,20 +79,20 @@ public class JanelaInicial extends MainGUI{
         jan_cliente.setVisible(true); 
     }
      
-    private class ManipulaButtonField implements ActionListener{
+    private class ManipulaButtonField implements ActionListener {
         public void actionPerformed(ActionEvent evento){
             if(evento.getSource() == funcionario)
                 {
                     janFunc();
                 }
             if(evento.getSource() == cliente)
-               {
+                {
                     janCliente();
                 }
             if (evento.getSource() == clientes)
-            {
-                ServeSystem.mostraclientesterminal();
-            }
+                {
+                    ServeSystem.mostraClientesTerminal();
+                }
         }
     
     }

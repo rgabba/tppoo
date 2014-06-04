@@ -18,6 +18,8 @@ public class JanelaSolicitacoesFunc extends MainGUI {
     //Manipulador de botões
     ManipulaButtonField manipuladorbotao = new ManipulaButtonField ();
     
+    private JList<Solicitacao> lista = new JList<Solicitacao>();
+    
     //Caixas de texto
     private JTextField text_nome = new JTextField(30);
     private JTextField text_email = new JTextField(30);

@@ -111,8 +111,8 @@ public class JanelaCadastroCliente extends MainGUI {
                     String email = text_email.getText();
                     String ender = text_endereco.getText();
                     String nasc = text_dataNasc.getText();
-                    
-                    boolean confirm = ServeSystem.addcliente(nome,tel,cpf,ident,email,ender,nasc);
+                    Cliente cliente = new Cliente(nome,tel,ident,cpf,ender, email,nasc);
+                    boolean confirm = ServeSystem.addCliente(cliente);
                     if (confirm == true)
                         JOptionPane.showMessageDialog(null, "Cadastro concluído.");
                     else

@@ -16,25 +16,17 @@ public class Cliente extends Pessoa implements Serializable { //serializable par
     protected String identidade;
     protected String cpf;
     protected String endereco;
+    protected String email;
     protected String dataNasc;
     protected String dataCadastro;
     
-    Cliente(String nome, String telefone, String identidade, String cpf, String endereco, String dataNasc, String dataCadastro) {
+    Cliente(String nome, String telefone, String identidade, String cpf, String endereco, String email, String dataNasc) {
         super(nome, telefone);
         this.identidade = identidade;
         this.cpf = cpf;
         this.endereco = endereco;
+        this.email = email;
         this.dataNasc = dataNasc;
-        this.dataCadastro = dataCadastro;
-    }
-    /*Data do cadastro é realmente necessário?*/
-        Cliente(String nome, String telefone, String identidade, String cpf, String endereco, String dataNasc/*, String dataCadastro*/) {
-        super(nome, telefone);
-        this.identidade = identidade;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.dataNasc = dataNasc;
-        //this.dataCadastro = dataCadastro;
     }
     
 }

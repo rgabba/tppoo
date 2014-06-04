@@ -18,11 +18,11 @@ public class ServeSystem {
     /**
      * @param args the command line arguments
      */
-    private static ArrayList <Cliente> clientes = new ArrayList <Cliente>();
+    private static HashMap<String,Cliente> clientes = new HashMap<String,Cliente>();
+    
+    private static HashMap<String,Funcionario> funcionarios = new HashMap<String,Funcionario>();
     
     public static void main(String[] args) {
-        
-        // TODO code application logic here
         
         /*Olá amiguinhos*/
         
@@ -34,17 +34,16 @@ public class ServeSystem {
         teste.setVisible(true);
     }
     
-    public static boolean addcliente(String nome, String telefone, String cpf,String identidade, String email, String endereco, String nascimento)
+    public static boolean addCliente(Cliente cliente)
     {
-     Cliente novocliente = new Cliente (nome,telefone,identidade,cpf,endereco,nascimento);
-     clientes.add(novocliente);
-     System.out.println("YAY!");
-     System.out.println(clientes.size());
-     System.out.println(novocliente.cpf);
-     return true;
+        clientes.put(cliente.cpf, cliente);
+        System.out.println("YAY! Cliente");
+        System.out.println(clientes.size());
+        System.out.println(cliente.cpf);
+        return true;
     }
     
-    public static void mostraclientesterminal()
+    public static void mostraClientesTerminal()
     {
         int i=0;
         while (i<clientes.size())
@@ -54,21 +53,33 @@ public class ServeSystem {
             System.out.println(acliente.cpf);
         }
     }
-    public static boolean verifycpfcadastro(String cpf)
+    
+    public static boolean verifyCpfCadastro(String cpf)
     {
-        int i=0;
-        while (i<clientes.size())
-        {
-            if(clientes.get(i).cpf == null ? cpf == null : clientes.get(i).cpf.equals(cpf))
-                    return true;
-        }
-        return false;
+        return clientes.containsKey(cpf);
     }
-    public static Cliente cpfcadastrado(String cpf)
+    
+    public static Cliente cpfCadastrado(String cpf)
     {
-        int i=0;
-       while ((clientes.get(i).cpf == null ? cpf != null : !clientes.get(i).cpf.equals(cpf)) && i<clientes.size())
-            i++;
-       return clientes.get(i);
+        return clientes.get(cpf);
+    }
+    
+    public static boolean addFuncionario(Funcionario funcionario)
+    {
+        funcionarios.put(funcionario.nMatricula, funcionario);
+        System.out.println("YAY! Funcionario");
+        System.out.println(funcionarios.size());
+        System.out.println(funcionario.nMatricula);
+        return true;
+    }
+    
+    public static boolean verifyNMatCadastro(String nMat)
+    {
+        return funcionarios.containsKey(nMat);
+    }
+    
+    public static Funcionario nMatCadastrado(String nMat)
+    {
+        return funcionarios.get(nMat);
     }
 }

@@ -77,12 +77,12 @@ public class JanelaCliente extends MainGUI {
                     }
                     else
                     {
-                        if(ServeSystem.verifycpfcadastro(text_cpf.getText())==true) 
+                        if(ServeSystem.verifyCpfCadastro(text_cpf.getText())==true) 
                         {
                             //Carrega cliente
-                            Cliente clienteatual = ServeSystem.cpfcadastrado(text_cpf.getText());
+                            Cliente clienteatual = ServeSystem.cpfCadastrado(text_cpf.getText());
                             JOptionPane.showMessageDialog(null, "Bem vindo " + clienteatual.nome + "!");
-                            /*O que fazer agora?*/
+                            /*O que fazer agora?*/ //resposta: página pra mostrar as solicitações q o cliente fez ou opção de abrir uma nova
                         }
                             /*Verifica se está no banco de dados, se sim, carrega, se não adiciona*/
                         else
