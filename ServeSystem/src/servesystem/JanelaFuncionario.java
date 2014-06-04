@@ -58,9 +58,9 @@ public class JanelaFuncionario extends MainGUI {
      
     private void janCadastroFunc() {
         JanelaCadastroFunc jan_cadastroFunc = new JanelaCadastroFunc();
-        jan_cadastroFunc.setSize(430, 200);
+        jan_cadastroFunc.setSize(530, 200);
         jan_cadastroFunc.setLocationRelativeTo(null);
-        jan_cadastroFunc.setResizable(true);
+        jan_cadastroFunc.setResizable(false);
         jan_cadastroFunc.setVisible(true); 
     }
     

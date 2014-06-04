@@ -32,6 +32,7 @@ public class JanelaCadastroCliente extends MainGUI {
     private JButton cancela = new JButton ("Cancela");
     
     //Rótulos
+     private JLabel rotulo = new JLabel ("Favor preencher o formulário a seguir para ser cadastrado em nosso sistema:");
      private JLabel rotulo_nome = new JLabel ("Nome:");
      private JLabel rotulo_cpf = new JLabel ("CPF:");
      private JLabel rotulo_identidade = new JLabel ("Identidade:");
@@ -41,6 +42,7 @@ public class JanelaCadastroCliente extends MainGUI {
      private JLabel rotulo_dataNasc = new JLabel ("Data de Nasc.: ");
      
      //Painéis
+     private JPanel pan_rot = new JPanel();
      private JPanel pan_nome = new JPanel();
      private JPanel pan_cpf = new JPanel();
      private JPanel pan_email =  new JPanel();
@@ -50,12 +52,17 @@ public class JanelaCadastroCliente extends MainGUI {
       
      JanelaCadastroCliente (String nome, String cpf)
      {
-         super ("Bem vindo à Serve!");
+         super ("Cadastro de cliente");
          text_nome.setText(nome);
          text_cpf.setText(cpf);
+         
+         text_nome.setEditable(false);
+         text_cpf.setEditable(false);
+         
          setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
          container.setLayout(new BoxLayout(container, 1));
          
+         pan_rot.setLayout (new FlowLayout());
          pan_nome.setLayout (new FlowLayout());
          pan_cpf.setLayout (new FlowLayout());
          pan_email.setLayout (new FlowLayout());
@@ -63,6 +70,7 @@ public class JanelaCadastroCliente extends MainGUI {
          pan_telefone.setLayout (new FlowLayout());
          pan_bot.setLayout (new FlowLayout());
          
+         pan_rot.add(rotulo);
          pan_nome.add(rotulo_nome);
          pan_nome.add(text_nome);
          pan_cpf.add(rotulo_cpf);
@@ -82,6 +90,7 @@ public class JanelaCadastroCliente extends MainGUI {
          
          confirma.addActionListener(manipuladorbotao);
          cancela.addActionListener(manipuladorbotao);
+         container.add(pan_rot);
          container.add(pan_nome);
          container.add(pan_cpf);
          container.add(pan_email);

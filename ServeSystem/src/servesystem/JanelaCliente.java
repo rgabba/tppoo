@@ -61,9 +61,9 @@ public class JanelaCliente extends MainGUI {
      
      private void janCadastroCliente(String nome, String cpf) {
         JanelaCadastroCliente jan_cadastroCliente = new JanelaCadastroCliente(nome, cpf);
-        jan_cadastroCliente.setSize(430, 250);
+        jan_cadastroCliente.setSize(530, 250);
         jan_cadastroCliente.setLocationRelativeTo(null);
-        jan_cadastroCliente.setResizable(true);
+        jan_cadastroCliente.setResizable(false);
         jan_cadastroCliente.setVisible(true); 
     }
       
@@ -80,6 +80,7 @@ public class JanelaCliente extends MainGUI {
                         //if(tánobanco) login;
                             /*Verifica se está no banco de dados, se sim, carrega, se não adiciona*/
                         /*else*/ 
+                        JOptionPane.showMessageDialog(null, "Cliente não cadastrado, por favor preencha o formulário a seguir.");
                         janCadastroCliente(text_nome.getText(), text_cpf.getText());
                     }
                 }
