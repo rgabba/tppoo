@@ -76,10 +76,13 @@ public class JanelaFuncionario extends MainGUI {
         public void actionPerformed(ActionEvent evento){
             if(evento.getSource() == confirma)
                 {
-                    
-                    /*Verifica se numero de matricula é valido, caso positivo, verifica se está no banco de dados, caso negativo, chama função para adicionar*/
-                    /*else*/
+                    if(ServeSystem.verifyNMatCadastro(text_nMat.getText())) {
                     janSolicitacoesFunc(text_nMat.getText());
+                    }
+                    else {
+                            JOptionPane.showMessageDialog(null, "Funcionário não cadastrado, favor tentar novamente.");
+                            text_nMat.setText("");
+                        }
                 }
             if(evento.getSource() == cancela)
                 {

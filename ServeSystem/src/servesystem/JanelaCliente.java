@@ -77,7 +77,7 @@ public class JanelaCliente extends MainGUI {
                     }
                     else
                     {
-                        if(ServeSystem.verifyCpfCadastro(text_cpf.getText())==true) 
+                        if(ServeSystem.verifyCpfCadastro(text_cpf.getText())) 
                         {
                             //Carrega cliente
                             Cliente clienteatual = ServeSystem.cpfCadastrado(text_cpf.getText());

@@ -44,7 +44,7 @@ public class JanelaSolicitacoesFunc extends MainGUI {
       
      JanelaSolicitacoesFunc (String nMat)
      {
-         super ("Bem vindo à Serve!");
+         super ("Lista de solicitações");
          setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
          container.setLayout(new BoxLayout(container, 1));
          

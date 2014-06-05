@@ -8,6 +8,7 @@ package servesystem;
 
 import static java.sql.Types.NULL;
 import java.util.*;
+import java.io.*;
 
 /**
  *
@@ -22,16 +23,54 @@ public class ServeSystem {
     
     private static HashMap<String,Funcionario> funcionarios = new HashMap<String,Funcionario>();
     
+    private static HashMap<Integer,Solicitacao> solicitacoes = new HashMap<Integer,Solicitacao>(); //não aceita tipo primitivo como chave, mas o casting é feito automaticamente
+    
     public static void main(String[] args) {
-        
-        /*Olá amiguinhos*/
-        
-        /* Olá zoobomafoo*/
         JanelaInicial teste = new JanelaInicial();
         teste.setSize(340, 150);
         teste.setLocationRelativeTo(null);
         teste.setResizable(true);
         teste.setVisible(true);
+        carregarBanco();
+    }
+    
+    private static void carregarBanco()
+    {
+        try {
+        ObjectInputStream carregarClientes = new ObjectInputStream(new FileInputStream("/ListaClientes.dat"));
+        ObjectInputStream carregarFuncionarios = new ObjectInputStream(new FileInputStream("/ListaFuncionarios.dat"));
+        ObjectInputStream carregarSolicitacoes = new ObjectInputStream(new FileInputStream("/ListaSolicitacoes.dat"));
+        clientes = (HashMap<String,Cliente>)carregarClientes.readObject();
+        carregarClientes.close();
+        funcionarios = (HashMap<String,Funcionario>)carregarFuncionarios.readObject(); //carrega os arquivos para os HashMaps declarados lá em cima
+        carregarFuncionarios.close();
+        solicitacoes = (HashMap<Integer,Solicitacao>)carregarSolicitacoes.readObject();
+        carregarSolicitacoes.close();
+        }
+        catch(IOException e) {
+            System.out.println("ERRO DE LEITURA DO BANCO DE DADOS (IOException)");
+        }
+        catch(ClassNotFoundException e) {
+            System.out.println("ERRO DE LEITURA DO BANCO DE DADOS (ClassNotFoundException)");
+        }
+    }
+    
+    private static void salvarBanco()
+    {
+        try {
+            ObjectOutputStream salvarClientes = new ObjectOutputStream(new FileOutputStream("ListaClientes.dat"));
+            ObjectOutputStream salvarFuncionarios = new ObjectOutputStream(new FileOutputStream("ListaFuncionarios.dat"));
+            ObjectOutputStream salvarSolicitacoes = new ObjectOutputStream(new FileOutputStream("ListaSolicitacoes.dat"));
+            if(!clientes.isEmpty()) salvarClientes.writeObject(clientes);
+            salvarClientes.close();
+            if(!funcionarios.isEmpty()) salvarFuncionarios.writeObject(funcionarios); //salva todos os HashMaps nos arquivos
+            salvarFuncionarios.close();
+            if(!solicitacoes.isEmpty()) salvarSolicitacoes.writeObject(solicitacoes);
+            salvarSolicitacoes.close();
+        }
+        catch(IOException e) {
+            System.out.println("ERRO NA GRAVAÇÃO DO BANCO DE DADOS (IOException)");
+        }
     }
     
     public static boolean addCliente(Cliente cliente)
@@ -40,6 +79,7 @@ public class ServeSystem {
         System.out.println("YAY! Cliente");
         System.out.println(clientes.size());
         System.out.println(cliente.cpf);
+        salvarBanco();
         return true;
     }
     
@@ -70,6 +110,7 @@ public class ServeSystem {
         System.out.println("YAY! Funcionario");
         System.out.println(funcionarios.size());
         System.out.println(funcionario.nMatricula);
+        salvarBanco();
         return true;
     }
     
@@ -81,5 +122,15 @@ public class ServeSystem {
     public static Funcionario nMatCadastrado(String nMat)
     {
         return funcionarios.get(nMat);
+    }
+    
+    public static boolean addSolicitacao(Solicitacao solicitacao)
+    {
+        solicitacoes.put(solicitacao.id, solicitacao);
+        System.out.println("YAY! Solicitacao");
+        System.out.println(solicitacoes.size());
+        System.out.println(solicitacao.id);
+        salvarBanco();
+        return true;
     }
 }
