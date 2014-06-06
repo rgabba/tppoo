@@ -37,9 +37,12 @@ public class ServeSystem {
     private static void carregarBanco()
     {
         try {
-        ObjectInputStream carregarClientes = new ObjectInputStream(new FileInputStream("/ListaClientes.dat"));
-        ObjectInputStream carregarFuncionarios = new ObjectInputStream(new FileInputStream("/ListaFuncionarios.dat"));
-        ObjectInputStream carregarSolicitacoes = new ObjectInputStream(new FileInputStream("/ListaSolicitacoes.dat"));
+        ObjectInputStream carregarClientes = new ObjectInputStream(new FileInputStream("ListaClientes.dat"));
+        ObjectInputStream carregarFuncionarios = new ObjectInputStream(new FileInputStream("ListaFuncionarios.dat"));
+        ObjectInputStream carregarSolicitacoes = new ObjectInputStream(new FileInputStream("ListaSolicitacoes.dat"));
+        
+        System.out.println(((HashMap<String,Cliente>)carregarClientes.readObject()).toString()); //o erro está acontecendo no casting do inputStream para HashMap
+        
         clientes = (HashMap<String,Cliente>)carregarClientes.readObject();
         carregarClientes.close();
         funcionarios = (HashMap<String,Funcionario>)carregarFuncionarios.readObject(); //carrega os arquivos para os HashMaps declarados lá em cima
