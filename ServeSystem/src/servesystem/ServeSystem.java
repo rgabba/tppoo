@@ -9,6 +9,7 @@ package servesystem;
 import static java.sql.Types.NULL;
 import java.util.*;
 import java.io.*;
+import com.google.common.collect.HashMultimap;
 
 /**
  *
@@ -19,12 +20,12 @@ public class ServeSystem {
     /**
      * @param args the command line arguments
      */
-    private static HashMap<String,Cliente> clientes = new HashMap<String,Cliente>();
+    private static Map<String,Cliente> clientes = new HashMap<>();
     
-    private static HashMap<String,Funcionario> funcionarios = new HashMap<String,Funcionario>();
+    private static Map<String,Funcionario> funcionarios = new HashMap<>();
     
-    private static HashMap<Integer,Solicitacao> solicitacoes = new HashMap<Integer,Solicitacao>(); //não aceita tipo primitivo como chave, mas o casting é feito automaticamente
-    
+    private static HashMultimap<Cliente,Solicitacao> solicitacoes = HashMultimap.create();
+    //tive que arrumar esse outro tipo de dados hashmultimap pra salvar varias solicitações associadas a um cliente
     public static void main(String[] args) {
         JanelaInicial teste = new JanelaInicial();
         teste.setSize(340, 150);
@@ -34,50 +35,41 @@ public class ServeSystem {
         carregarBanco();
     }
     
-    private static void carregarBanco()
-    {
+    private static void carregarBanco() {
         try {
-        ObjectInputStream carregarClientes = new ObjectInputStream(new FileInputStream("ListaClientes.dat"));
-        ObjectInputStream carregarFuncionarios = new ObjectInputStream(new FileInputStream("ListaFuncionarios.dat"));
-        ObjectInputStream carregarSolicitacoes = new ObjectInputStream(new FileInputStream("ListaSolicitacoes.dat"));
-        
-        System.out.println(((HashMap<String,Cliente>)carregarClientes.readObject()).toString()); //o erro está acontecendo no casting do inputStream para HashMap
-        
-        clientes = (HashMap<String,Cliente>)carregarClientes.readObject();
-        carregarClientes.close();
-        funcionarios = (HashMap<String,Funcionario>)carregarFuncionarios.readObject(); //carrega os arquivos para os HashMaps declarados lá em cima
-        carregarFuncionarios.close();
-        solicitacoes = (HashMap<Integer,Solicitacao>)carregarSolicitacoes.readObject();
-        carregarSolicitacoes.close();
-        }
-        catch(IOException e) {
-            System.out.println("ERRO DE LEITURA DO BANCO DE DADOS (IOException)");
-        }
-        catch(ClassNotFoundException e) {
-            System.out.println("ERRO DE LEITURA DO BANCO DE DADOS (ClassNotFoundException)");
-        }
+            ObjectInputStream carregarClientes = new ObjectInputStream(new FileInputStream("ListaClientes.dat"));
+            ObjectInputStream carregarFuncionarios = new ObjectInputStream(new FileInputStream("ListaFuncionarios.dat"));
+            ObjectInputStream carregarSolicitacoes = new ObjectInputStream(new FileInputStream("ListaSolicitacoes.dat"));
+            clientes = (HashMap<String,Cliente>)carregarClientes.readObject();
+            carregarClientes.close();
+            funcionarios = (HashMap<String,Funcionario>)carregarFuncionarios.readObject(); //carrega os arquivos para os HashMaps declarados lá em cima
+            carregarFuncionarios.close();
+            solicitacoes = (HashMultimap<Cliente,Solicitacao>)carregarSolicitacoes.readObject();
+            carregarSolicitacoes.close();
+            }
+            catch(IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
     }
     
-    private static void salvarBanco()
-    {
+    private static void salvarBanco() {
         try {
             ObjectOutputStream salvarClientes = new ObjectOutputStream(new FileOutputStream("ListaClientes.dat"));
-            ObjectOutputStream salvarFuncionarios = new ObjectOutputStream(new FileOutputStream("ListaFuncionarios.dat"));
-            ObjectOutputStream salvarSolicitacoes = new ObjectOutputStream(new FileOutputStream("ListaSolicitacoes.dat"));
             if(!clientes.isEmpty()) salvarClientes.writeObject(clientes);
             salvarClientes.close();
+            ObjectOutputStream salvarFuncionarios = new ObjectOutputStream(new FileOutputStream("ListaFuncionarios.dat"));
             if(!funcionarios.isEmpty()) salvarFuncionarios.writeObject(funcionarios); //salva todos os HashMaps nos arquivos
             salvarFuncionarios.close();
+            ObjectOutputStream salvarSolicitacoes = new ObjectOutputStream(new FileOutputStream("ListaSolicitacoes.dat"));
             if(!solicitacoes.isEmpty()) salvarSolicitacoes.writeObject(solicitacoes);
             salvarSolicitacoes.close();
         }
         catch(IOException e) {
-            System.out.println("ERRO NA GRAVAÇÃO DO BANCO DE DADOS (IOException)");
+            e.printStackTrace();
         }
     }
     
-    public static boolean addCliente(Cliente cliente)
-    {
+    public static boolean addCliente(Cliente cliente) {
         clientes.put(cliente.cpf, cliente);
         System.out.println("YAY! Cliente");
         System.out.println(clientes.size());
@@ -97,18 +89,15 @@ public class ServeSystem {
         }
     }
     
-    public static boolean verifyCpfCadastro(String cpf)
-    {
+    public static boolean verifyCpfCadastro(String cpf) {
         return clientes.containsKey(cpf);
     }
     
-    public static Cliente cpfCadastrado(String cpf)
-    {
+    public static Cliente cpfCadastrado(String cpf) {
         return clientes.get(cpf);
     }
     
-    public static boolean addFuncionario(Funcionario funcionario)
-    {
+    public static boolean addFuncionario(Funcionario funcionario) {
         funcionarios.put(funcionario.nMatricula, funcionario);
         System.out.println("YAY! Funcionario");
         System.out.println(funcionarios.size());
@@ -129,11 +118,16 @@ public class ServeSystem {
     
     public static boolean addSolicitacao(Solicitacao solicitacao)
     {
-        solicitacoes.put(solicitacao.id, solicitacao);
+        solicitacoes.put(solicitacao.solicitante    , solicitacao);
         System.out.println("YAY! Solicitacao");
         System.out.println(solicitacoes.size());
         System.out.println(solicitacao.id);
         salvarBanco();
         return true;
     }
+    
+    public static Set<Solicitacao> listaSolicitacoesCliente(Cliente cliente) {
+        return solicitacoes.get(cliente);
+    }
+    
 }

@@ -66,6 +66,14 @@ public class JanelaCliente extends MainGUI {
         jan_cadastroCliente.setResizable(false);
         jan_cadastroCliente.setVisible(true); 
     }
+     
+    private void janSolicitacoes(String cpf) {
+        JanelaSolicitacoesCliente jan_solicitacoes = new JanelaSolicitacoesCliente(cpf);
+        jan_solicitacoes.setSize(530, 250);
+        jan_solicitacoes.setLocationRelativeTo(null);
+        jan_solicitacoes.setResizable(false);
+        jan_solicitacoes.setVisible(true); 
+    }
       
       private class ManipulaButtonField implements ActionListener{
         public void actionPerformed(ActionEvent evento){
@@ -80,11 +88,10 @@ public class JanelaCliente extends MainGUI {
                         if(ServeSystem.verifyCpfCadastro(text_cpf.getText())) 
                         {
                             //Carrega cliente
-                            Cliente clienteatual = ServeSystem.cpfCadastrado(text_cpf.getText());
-                            JOptionPane.showMessageDialog(null, "Bem vindo " + clienteatual.nome + "!");
-                            /*O que fazer agora?*/ //resposta: página pra mostrar as solicitações q o cliente fez ou opção de abrir uma nova
+                            Cliente clienteAtual = ServeSystem.cpfCadastrado(text_cpf.getText());
+                            JOptionPane.showMessageDialog(null, "Bem vindo " + clienteAtual.nome + "!");
+                            janSolicitacoes(clienteAtual.cpf);
                         }
-                            /*Verifica se está no banco de dados, se sim, carrega, se não adiciona*/
                         else
                         {
                             JOptionPane.showMessageDialog(null, "Cliente não cadastrado, por favor preencha o formulário a seguir.");

@@ -10,7 +10,7 @@ package servesystem;
  *
  * @author User
  */
-public class Pessoa {
+public class Pessoa implements java.io.Serializable {
     //Vamos dar preferencia a chaves protected principalmente em classes com subclasses!
     //chaves private certamente causarão problemas.
     protected String nome;

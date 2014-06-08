@@ -12,7 +12,7 @@ import java.util.*; //para usar o tipo Date
  *
  * @author User
  */
-public class Solicitacao {
+public class Solicitacao implements java.io.Serializable {
     static int count = 0; //cada instancia de solicitacao atribui o valor de count como um id e acresce ele
     protected int id;
     protected Cliente solicitante;

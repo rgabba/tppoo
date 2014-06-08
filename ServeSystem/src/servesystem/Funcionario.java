@@ -6,15 +6,13 @@
 
 package servesystem;
 
-import java.io.*;
-import javax.swing.JOptionPane;
 import java.util.Random; //usado para atribuicao do nº de matricula
 
 /**
  *
  * @author User
  */
-public class Funcionario extends Pessoa implements Serializable { //serializable para poder salvar em arquivo
+public class Funcionario extends Pessoa implements java.io.Serializable { //serializable para poder salvar em arquivo
     protected String email;
     protected String cargo;
     protected String nMatricula;
@@ -32,20 +30,8 @@ public class Funcionario extends Pessoa implements Serializable { //serializable
         return this.nMatricula;
     }
     
-    /*static Funcionario encontraFuncionario(String nMatricula) { //A IMPLEMENTAR
-        Funcionario retornaFuncionario = null;
-        try { 
-            FileReader leitor = new FileReader("C:\\POO\funcionarios.txt");
-            BufferedReader buscaFuncionario = new BufferedReader(leitor);
-            String texto = buscaFuncionario.readLine();
-            while(texto != null || texto.contentEquals(nMatricula)) {
-            
-            }
-        }
-        catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Erro na leitura do arquivo de dados");
-        }
-        return retornaFuncionario;
-    }*/
+    Funcionario encontraFuncionario(String nMatricula) {
+        return ServeSystem.nMatCadastrado(nMatricula);
+    }
     
 }
