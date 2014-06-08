@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servesystem;
 
-import static java.sql.Types.NULL;
 import java.util.*;
 import java.io.*;
 import com.google.common.collect.HashMultimap;
@@ -20,12 +18,14 @@ public class ServeSystem {
     /**
      * @param args the command line arguments
      */
-    private static Map<String,Cliente> clientes = new HashMap<>();
-    
-    private static Map<String,Funcionario> funcionarios = new HashMap<>();
-    
-    private static HashMultimap<Cliente,Solicitacao> solicitacoes = HashMultimap.create();
+    private static Map<String, Cliente> clientes = new HashMap<>();
+
+    private static Map<String, Funcionario> funcionarios = new HashMap<>();
+
+    private static HashMultimap<Cliente, Solicitacao> solicitacoes = HashMultimap.create();
+
     //tive que arrumar esse outro tipo de dados hashmultimap pra salvar varias solicitações associadas a um cliente
+
     public static void main(String[] args) {
         JanelaInicial teste = new JanelaInicial();
         teste.setSize(340, 150);
@@ -34,41 +34,45 @@ public class ServeSystem {
         teste.setVisible(true);
         carregarBanco();
     }
-    
+
     private static void carregarBanco() {
         try {
             ObjectInputStream carregarClientes = new ObjectInputStream(new FileInputStream("ListaClientes.dat"));
             ObjectInputStream carregarFuncionarios = new ObjectInputStream(new FileInputStream("ListaFuncionarios.dat"));
             ObjectInputStream carregarSolicitacoes = new ObjectInputStream(new FileInputStream("ListaSolicitacoes.dat"));
-            clientes = (HashMap<String,Cliente>)carregarClientes.readObject();
+            clientes = (HashMap<String, Cliente>) carregarClientes.readObject();
             carregarClientes.close();
-            funcionarios = (HashMap<String,Funcionario>)carregarFuncionarios.readObject(); //carrega os arquivos para os HashMaps declarados lá em cima
+            funcionarios = (HashMap<String, Funcionario>) carregarFuncionarios.readObject(); //carrega os arquivos para os HashMaps declarados lá em cima
             carregarFuncionarios.close();
-            solicitacoes = (HashMultimap<Cliente,Solicitacao>)carregarSolicitacoes.readObject();
+            solicitacoes = (HashMultimap<Cliente, Solicitacao>) carregarSolicitacoes.readObject();
             carregarSolicitacoes.close();
-            }
-            catch(IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-    }
-    
-    private static void salvarBanco() {
-        try {
-            ObjectOutputStream salvarClientes = new ObjectOutputStream(new FileOutputStream("ListaClientes.dat"));
-            if(!clientes.isEmpty()) salvarClientes.writeObject(clientes);
-            salvarClientes.close();
-            ObjectOutputStream salvarFuncionarios = new ObjectOutputStream(new FileOutputStream("ListaFuncionarios.dat"));
-            if(!funcionarios.isEmpty()) salvarFuncionarios.writeObject(funcionarios); //salva todos os HashMaps nos arquivos
-            salvarFuncionarios.close();
-            ObjectOutputStream salvarSolicitacoes = new ObjectOutputStream(new FileOutputStream("ListaSolicitacoes.dat"));
-            if(!solicitacoes.isEmpty()) salvarSolicitacoes.writeObject(solicitacoes);
-            salvarSolicitacoes.close();
-        }
-        catch(IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-    
+
+    private static void salvarBanco() {
+        try {
+            ObjectOutputStream salvarClientes = new ObjectOutputStream(new FileOutputStream("ListaClientes.dat"));
+            if (!clientes.isEmpty()) {
+                salvarClientes.writeObject(clientes);
+            }
+            salvarClientes.close();
+            ObjectOutputStream salvarFuncionarios = new ObjectOutputStream(new FileOutputStream("ListaFuncionarios.dat"));
+            if (!funcionarios.isEmpty()) {
+                salvarFuncionarios.writeObject(funcionarios); //salva todos os HashMaps nos arquivos
+            }
+            salvarFuncionarios.close();
+            ObjectOutputStream salvarSolicitacoes = new ObjectOutputStream(new FileOutputStream("ListaSolicitacoes.dat"));
+            if (!solicitacoes.isEmpty()) {
+                salvarSolicitacoes.writeObject(solicitacoes);
+            }
+            salvarSolicitacoes.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static boolean addCliente(Cliente cliente) {
         clientes.put(cliente.cpf, cliente);
         System.out.println("YAY! Cliente");
@@ -77,26 +81,24 @@ public class ServeSystem {
         salvarBanco();
         return true;
     }
-    
-    public static void mostraClientesTerminal()
-    {
-        int i=0;
-        while (i<clientes.size())
-        {
-            Cliente acliente= clientes.get(i);
+
+    public static void mostraClientesTerminal() {
+        int i = 0;
+        while (i < clientes.size()) {
+            Cliente acliente = clientes.get(i);
             i++;
             System.out.println(acliente.cpf);
         }
     }
-    
+
     public static boolean verifyCpfCadastro(String cpf) {
         return clientes.containsKey(cpf);
     }
-    
+
     public static Cliente cpfCadastrado(String cpf) {
         return clientes.get(cpf);
     }
-    
+
     public static boolean addFuncionario(Funcionario funcionario) {
         funcionarios.put(funcionario.nMatricula, funcionario);
         System.out.println("YAY! Funcionario");
@@ -105,29 +107,34 @@ public class ServeSystem {
         salvarBanco();
         return true;
     }
-    
-    public static boolean verifyNMatCadastro(String nMat)
-    {
+
+    public static boolean verifyNMatCadastro(String nMat) {
         return funcionarios.containsKey(nMat);
     }
-    
-    public static Funcionario nMatCadastrado(String nMat)
-    {
+
+    public static Funcionario nMatCadastrado(String nMat) {
         return funcionarios.get(nMat);
     }
-    
-    public static boolean addSolicitacao(Solicitacao solicitacao)
-    {
-        solicitacoes.put(solicitacao.solicitante    , solicitacao);
+
+    public static boolean addSolicitacao(Solicitacao solicitacao) {
+        solicitacoes.put(solicitacao.solicitante, solicitacao);
         System.out.println("YAY! Solicitacao");
         System.out.println(solicitacoes.size());
         System.out.println(solicitacao.id);
         salvarBanco();
         return true;
     }
-    
+
     public static Set<Solicitacao> listaSolicitacoesCliente(Cliente cliente) {
         return solicitacoes.get(cliente);
     }
-    
+    public static Set<Solicitacao> listaSolicitacoesFuncionario(Funcionario funcionario) {
+        int i=0;
+        Set<Solicitacao> lista = new HashSet<>();
+        while(i<solicitacoes.size()) {
+            //if(solicitacoes.)
+        }
+        return lista;
+    }
+
 }
