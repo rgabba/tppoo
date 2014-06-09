@@ -30,7 +30,7 @@ public class ServeSystem {
         JanelaInicial teste = new JanelaInicial();
         teste.setSize(340, 150);
         teste.setLocationRelativeTo(null);
-        teste.setResizable(true);
+        teste.setResizable(false);
         teste.setVisible(true);
         carregarBanco();
     }
@@ -129,10 +129,11 @@ public class ServeSystem {
         return solicitacoes.get(cliente);
     }
     public static Set<Solicitacao> listaSolicitacoesFuncionario(Funcionario funcionario) {
-        int i=0;
         Set<Solicitacao> lista = new HashSet<>();
-        while(i<solicitacoes.size()) {
-            //if(solicitacoes.)
+        Iterator it = lista.iterator();
+        while(it.hasNext()) {
+            if(((Solicitacao)it.next()).profSolicitado == funcionario.getCargo())
+             lista.add((Solicitacao)it.next());
         }
         return lista;
     }

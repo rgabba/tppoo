@@ -57,7 +57,7 @@ public class JanelaInicial extends MainGUI {
         JanelaFuncionario jan_funcionario = new JanelaFuncionario();
         jan_funcionario.setSize(430, 150);
         jan_funcionario.setLocationRelativeTo(null);
-        jan_funcionario.setResizable(true);
+        jan_funcionario.setResizable(false);
         jan_funcionario.setVisible(true);
     }
 
@@ -65,7 +65,7 @@ public class JanelaInicial extends MainGUI {
         JanelaCliente jan_cliente = new JanelaCliente();
         jan_cliente.setSize(430, 150);
         jan_cliente.setLocationRelativeTo(null);
-        jan_cliente.setResizable(true);
+        jan_cliente.setResizable(false);
         jan_cliente.setVisible(true);
     }
 

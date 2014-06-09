@@ -49,8 +49,8 @@ public class JanelaSolicitacoesFunc extends MainGUI {
         container.setLayout(new BoxLayout(container, 1));
         
         lista = new JList<Solicitacao>((Solicitacao[])ServeSystem.listaSolicitacoesFuncionario(funcionarioAtual).toArray());
-        lista.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        lista.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lista.setLayoutOrientation(JList.VERTICAL);
         JScrollPane listScroller = new JScrollPane(lista);
         listScroller.setPreferredSize(new Dimension(250, 80));
 

@@ -34,4 +34,8 @@ public class Funcionario extends Pessoa implements java.io.Serializable { //seri
         return ServeSystem.nMatCadastrado(nMatricula);
     }
 
+    String getCargo() {
+        return this.cargo;
+    }
+
 }

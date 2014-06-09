@@ -31,4 +31,8 @@ public class Cliente extends Pessoa implements java.io.Serializable { //serializ
         return ServeSystem.cpfCadastrado(cpf);
     }
 
+    String getNome() {
+        return this.nome;
+    }
+
 }

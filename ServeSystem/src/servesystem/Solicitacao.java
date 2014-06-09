@@ -22,7 +22,8 @@ public class Solicitacao implements java.io.Serializable {
     protected float orcamento;
     protected String descricaoOrcamento;
     protected Date dataDeSolicitacao;
-    /*implementar alguma variável de estado para a solicitação seguindo o que tá no pdf:
+    protected int estado;
+    /*
      1. Cadastrada – o usuário deu entrada e a solicitação está arquivada. 
      2. Aguardando Orçamento – Algum técnico já abriu a solicitação, mas ainda não completou 
      os dados do orçamento. 
@@ -44,10 +45,52 @@ public class Solicitacao implements java.io.Serializable {
         this.id = count;
         count++;
         this.dataDeSolicitacao = new Date(); //automaticamente seta a data atual 
+        this.estado = 1;
     }
+    
+    public String estado() {
+        String e="";
+        switch(this.estado) {
+            case 1:
+                e = "Cadastrada";
+                break;
+            case 2:
+                e = "Aguardando orçamento";
+                break;
+            case 3:
+                e = "Aguardando aprovação";
+                break;
+            case 4:
+                e = "Aprovada";
+                break;
+            case 5:
+                e = "Em andamento";
+                break;
+            case 6:
+                e = "Concluída";
+                break;
+            case 7:
+                e = "Em cobrança";
+                break;
+            case 8:
+                e = "Encerrada";
+                break;
+            case 9:
+                e = "Cancelada";
+                break;
+        }
+        return e;
+    }
+    
 
-    void setTecnico(Funcionario tecnicoEncarregado) { //quando um tecnico orçar o pedido, o programa seta ele como encarregado na instancia da solicitacao
+    public void setTecnico(Funcionario tecnicoEncarregado) { //quando um tecnico orçar o pedido, o programa seta ele como encarregado na instancia da solicitacao
         this.tecnicoEncarregado = tecnicoEncarregado;
+    }
+    
+    @Override
+    public String toString() {
+        String representacao = this.estado() + " - " + this.descricaoSolicitacao;
+       return representacao;
     }
 
 }
