@@ -133,10 +133,9 @@ public class ServeSystem {
         Iterator it = solicitacoes.values().iterator();
         while(it.hasNext()) {
             Solicitacao solicitacao = (Solicitacao)it.next();
-            if(solicitacao.profSolicitado.equals(cargo))
+            if(solicitacao.profSolicitado.contains(cargo))
              lista.add(solicitacao);
         }
-        System.out.println(lista);
         return lista;
     }
 
