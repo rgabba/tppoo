@@ -34,7 +34,7 @@ public class JanelaCriaSolicitacao extends MainGUI {
     private JLabel rotulo = new JLabel("Favor preencher os campos para sua solicitação:");
     private JLabel rotulo_nome = new JLabel("Nome:");
     private JLabel rotulo_descricao = new JLabel("Descrição:");
-    private JLabel rotulo_solicitado = new JLabel("Profissional solicitado:");
+    private JLabel rotulo_solicitado = new JLabel("Profissionais solicitados:");
 
     //Painéis
     private JPanel pan_rot = new JPanel();
