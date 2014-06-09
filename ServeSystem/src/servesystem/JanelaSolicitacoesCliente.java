@@ -46,7 +46,7 @@ public class JanelaSolicitacoesCliente extends MainGUI {
         container.setLayout(new BoxLayout(container, 1));
         
         model = new DefaultListModel<>();
-        Iterator it = ServeSystem.listaSolicitacoesCliente(clienteAtual).iterator();
+        Iterator it = ServeSystem.listaSolicitacoesCliente(clienteAtual.cpf).iterator();
         while(it.hasNext()) {
             model.addElement((Solicitacao)it.next());
         }

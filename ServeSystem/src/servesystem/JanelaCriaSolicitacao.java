@@ -87,7 +87,7 @@ public class JanelaCriaSolicitacao extends MainGUI {
             if (evento.getSource() == confirma) {
                 String descricao = text_descricao.getText();
                 String solicitado = text_solicitado.getText();
-                Solicitacao solicitacao = new Solicitacao(clienteAtual, solicitado, descricao);
+                Solicitacao solicitacao = new Solicitacao(clienteAtual.cpf, solicitado, descricao);
                 boolean confirm = ServeSystem.addSolicitacao(solicitacao);
                 if (confirm == true) {
                     JOptionPane.showMessageDialog(null, "Cadastro concluído.");

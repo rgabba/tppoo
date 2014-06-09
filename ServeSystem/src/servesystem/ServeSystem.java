@@ -22,7 +22,7 @@ public class ServeSystem {
 
     private static Map<String, Funcionario> funcionarios = new HashMap<>();
 
-    private static HashMultimap<Cliente, Solicitacao> solicitacoes = HashMultimap.create();
+    private static HashMultimap<String, Solicitacao> solicitacoes = HashMultimap.create();
 
     //tive que arrumar esse outro tipo de dados hashmultimap pra salvar varias solicitações associadas a um cliente
 
@@ -38,13 +38,13 @@ public class ServeSystem {
     private static void carregarBanco() {
         try {
             ObjectInputStream carregarClientes = new ObjectInputStream(new FileInputStream("ListaClientes.dat"));
-            ObjectInputStream carregarFuncionarios = new ObjectInputStream(new FileInputStream("ListaFuncionarios.dat"));
-            ObjectInputStream carregarSolicitacoes = new ObjectInputStream(new FileInputStream("ListaSolicitacoes.dat"));
             clientes = (HashMap<String, Cliente>) carregarClientes.readObject();
             carregarClientes.close();
-            funcionarios = (HashMap<String, Funcionario>) carregarFuncionarios.readObject(); //carrega os arquivos para os HashMaps declarados lá em cima
+            ObjectInputStream carregarFuncionarios = new ObjectInputStream(new FileInputStream("ListaFuncionarios.dat"));
+            funcionarios = (HashMap<String, Funcionario>) carregarFuncionarios.readObject();
             carregarFuncionarios.close();
-            solicitacoes = (HashMultimap<Cliente, Solicitacao>) carregarSolicitacoes.readObject();
+            ObjectInputStream carregarSolicitacoes = new ObjectInputStream(new FileInputStream("ListaSolicitacoes.dat"));
+            solicitacoes = (HashMultimap<String, Solicitacao>) carregarSolicitacoes.readObject();
             carregarSolicitacoes.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -117,7 +117,7 @@ public class ServeSystem {
     }
 
     public static boolean addSolicitacao(Solicitacao solicitacao) {
-        solicitacoes.put(solicitacao.solicitante, solicitacao);
+        solicitacoes.put(solicitacao.cpfSolicitante, solicitacao);
         System.out.println("YAY! Solicitacao");
         System.out.println(solicitacoes.size());
         System.out.println(solicitacao.id);
@@ -125,17 +125,23 @@ public class ServeSystem {
         return true;
     }
 
-    public static Set<Solicitacao> listaSolicitacoesCliente(Cliente cliente) {
-        return solicitacoes.get(cliente);
+    public static Set<Solicitacao> listaSolicitacoesCliente(String cpf) {
+        return solicitacoes.get(cpf);
     }
-    public static Set<Solicitacao> listaSolicitacoesFuncionario(Funcionario funcionario) {
+    public static Set<Solicitacao> listaSolicitacoesFuncionario(String cargo) {
         Set<Solicitacao> lista = new HashSet<>();
-        Iterator it = lista.iterator();
+        Iterator it = solicitacoes.values().iterator();
         while(it.hasNext()) {
-            if(((Solicitacao)it.next()).profSolicitado == funcionario.getCargo())
-             lista.add((Solicitacao)it.next());
+            Solicitacao solicitacao = (Solicitacao)it.next();
+            if(solicitacao.profSolicitado.equals(cargo))
+             lista.add(solicitacao);
         }
+        System.out.println(lista);
         return lista;
+    }
+
+    public static int nSolicitacoes() {
+        return solicitacoes.size();
     }
 
 }
