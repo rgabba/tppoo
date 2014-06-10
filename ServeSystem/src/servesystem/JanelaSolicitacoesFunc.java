@@ -43,7 +43,6 @@ public class JanelaSolicitacoesFunc extends MainGUI {
         container.setLayout(new BoxLayout(container, 1));
         
         model = new DefaultListModel<>();
-        
         Iterator it = ServeSystem.listaSolicitacoesFuncionario(funcionarioAtual.cargo).iterator();
         while(it.hasNext()) {
             model.addElement((Solicitacao)it.next());
@@ -68,13 +67,49 @@ public class JanelaSolicitacoesFunc extends MainGUI {
         container.add(pan_lista);
         container.add(pan_bot);
     }
+    
+    private void janOrcamento(Solicitacao solicitacao) {
+        switch(solicitacao.estado) {
+            case 1: case 2:
+                solicitacao.estado = 2;
+                JanelaOrcamento jan_orcamento = new JanelaOrcamento(solicitacao);
+                jan_orcamento.setSize(450, 225);
+                jan_orcamento.setLocationRelativeTo(null);
+                jan_orcamento.setResizable(false);
+                jan_orcamento.setVisible(true);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null, "Solicitação orçada, favor esperar resposta do cliente.");
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                
+                break;
+            case 7:
+                
+                break;
+            case 8:
+                
+                break;
+            case 9:
+                
+                break;
+        }
+    }
 
     private class ManipulaButtonField implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent evento) {
             if (evento.getSource() == confirma) {
-
+                lista.getSelectedValue().setTecnico(funcionarioAtual);
+                janOrcamento(lista.getSelectedValue());
+                dispose();
             }
             if (evento.getSource() == cancela) {
                 dispose();

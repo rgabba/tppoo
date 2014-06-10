@@ -19,8 +19,8 @@ public class Solicitacao implements java.io.Serializable {
     protected String profSolicitado;
     protected String descricaoSolicitacao;
     protected Funcionario tecnicoEncarregado;
-    protected float orcamento;
-    protected String descricaoOrcamento;
+    protected double orcamento;
+    protected List<Material> listaMaterial;
     protected Date dataDeSolicitacao;
     protected int estado;
     /*
@@ -87,10 +87,30 @@ public class Solicitacao implements java.io.Serializable {
         this.tecnicoEncarregado = tecnicoEncarregado;
     }
     
+    public void setMateriais(List lista) {
+        this.listaMaterial = lista;
+        double valor = 0;
+        Iterator i = lista.iterator();
+        while(i.hasNext()) {
+            valor += ((Material)i.next()).valorFinal();
+        }
+        this.estado = 3;
+    }
+    
     @Override
     public String toString() {
         String representacao = this.estado() + " - " + this.descricaoSolicitacao;
        return representacao;
+    }
+
+    public String precoFinal() {
+        return ("R$" + this.orcamento);
+    }
+    
+    public Set<Material> listaMateriais() {
+        Set<Material> lista = new HashSet<>();
+        lista.addAll(lista);
+        return lista;
     }
 
 }

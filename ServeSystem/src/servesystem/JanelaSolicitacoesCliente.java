@@ -78,7 +78,39 @@ public class JanelaSolicitacoesCliente extends MainGUI {
     }
     
     private void janSolicitacao(Solicitacao solicitacao) {
-        
+        switch(solicitacao.estado) {
+            case 1:
+                JOptionPane.showMessageDialog(null, "Solicitação cadastrada, favor aguardar orçamento.");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "Solicitação aberta, favor aguardar conclusão do orçamento.");
+                break;
+            case 3:
+                JanelaOrcamentoCliente jan_orcamentoC = new JanelaOrcamentoCliente(solicitacao);
+                jan_orcamentoC.setSize(250, 150);
+                jan_orcamentoC.setLocationRelativeTo(null);
+                jan_orcamentoC.setResizable(false);
+                jan_orcamentoC.setVisible(true);
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(null, "Solicitação aprovada, favor aguardar execução.");
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                
+                break;
+            case 7:
+                JOptionPane.showMessageDialog(null, "Fatura emitida");
+                break;
+            case 8:
+                JOptionPane.showMessageDialog(null, "Solicitação encerrada.");
+                break;
+            case 9:
+                JOptionPane.showMessageDialog(null, "Solicitação cancelada, favor criar nova.");
+                break;
+        }
     }
     
     private void janCriaSolicitacao(Cliente cliente) {

@@ -90,9 +90,9 @@ public class JanelaCriaSolicitacao extends MainGUI {
                 Solicitacao solicitacao = new Solicitacao(clienteAtual.cpf, solicitado, descricao);
                 boolean confirm = ServeSystem.addSolicitacao(solicitacao);
                 if (confirm == true) {
-                    JOptionPane.showMessageDialog(null, "Cadastro concluído.");
+                    JOptionPane.showMessageDialog(null, "Solicitacao concluída.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente, tente novamente");
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar solicitação, tente novamente");
                 }
                 dispose();
             }
