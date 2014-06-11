@@ -51,7 +51,7 @@ public class ServeSystem {
         }
     }
 
-    private static void salvarBanco() {
+    protected static void salvarBanco() {
         try {
             ObjectOutputStream salvarClientes = new ObjectOutputStream(new FileOutputStream("ListaClientes.dat"));
             if (!clientes.isEmpty()) {
@@ -60,7 +60,7 @@ public class ServeSystem {
             salvarClientes.close();
             ObjectOutputStream salvarFuncionarios = new ObjectOutputStream(new FileOutputStream("ListaFuncionarios.dat"));
             if (!funcionarios.isEmpty()) {
-                salvarFuncionarios.writeObject(funcionarios); //salva todos os HashMaps nos arquivos
+                salvarFuncionarios.writeObject(funcionarios); //salva todas as listas nos arquivos
             }
             salvarFuncionarios.close();
             ObjectOutputStream salvarSolicitacoes = new ObjectOutputStream(new FileOutputStream("ListaSolicitacoes.dat"));

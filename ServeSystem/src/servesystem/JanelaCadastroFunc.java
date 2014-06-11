@@ -82,7 +82,6 @@ public class JanelaCadastroFunc extends MainGUI {
         public void actionPerformed(ActionEvent evento) {
             if (evento.getSource() == confirma) {
                 Funcionario novoFunc = new Funcionario(text_nome.getText(), text_telefone.getText(), text_email.getText(), text_cargo.getText());
-                ServeSystem.addFuncionario(novoFunc);
                 boolean confirm = ServeSystem.addFuncionario(novoFunc);
                 if (confirm == true) {
                     JOptionPane.showMessageDialog(null, "Cadastro concluído. Número de Matrícula: " + novoFunc.nMatricula);

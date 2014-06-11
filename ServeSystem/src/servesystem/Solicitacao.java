@@ -22,6 +22,9 @@ public class Solicitacao implements java.io.Serializable {
     protected double orcamento;
     protected List<Material> listaMaterial;
     protected Date dataDeSolicitacao;
+    protected String formaPag;
+    protected String instPag;
+    protected String nPag;
     protected int estado;
     /*
      1. Cadastrada – o usuário deu entrada e a solicitação está arquivada. 
@@ -32,7 +35,7 @@ public class Solicitacao implements java.io.Serializable {
      4. Aprovada – O cliente já autorizou o serviço. 
      5. Em andamento – O técnico está elaborando o serviço. 
      6. Concluída – O serviço já foi realizado e o cliente já deu o aceite do serviço executado. 
-     7. Em cobrança – A fatura de pagamento foi emitida. 
+     7. Em cobrança – A fatura de pagamento foi emitida
      8. Encerrada – O serviço já foi feito, aprovado e pago. 
      9. Cancelada – A solicitação foi cancelada a pedido ou por ter esgotado a validade do 
      orçamento
@@ -70,12 +73,9 @@ public class Solicitacao implements java.io.Serializable {
                 e = "Concluída";
                 break;
             case 7:
-                e = "Em cobrança";
-                break;
-            case 8:
                 e = "Encerrada";
                 break;
-            case 9:
+            case 8:
                 e = "Cancelada";
                 break;
         }
@@ -85,6 +85,7 @@ public class Solicitacao implements java.io.Serializable {
 
     public void setTecnico(Funcionario tecnicoEncarregado) { //quando um tecnico orçar o pedido, o programa seta ele como encarregado na instancia da solicitacao
         this.tecnicoEncarregado = tecnicoEncarregado;
+        ServeSystem.salvarBanco();
     }
     
     public void setMateriais(List lista) {
@@ -92,25 +93,49 @@ public class Solicitacao implements java.io.Serializable {
         double valor = 0;
         Iterator i = lista.iterator();
         while(i.hasNext()) {
-            valor += ((Material)i.next()).valorFinal();
+            valor = valor + ((Material)i.next()).valorFinal();
         }
+        this.orcamento = valor;
         this.estado = 3;
+        ServeSystem.salvarBanco();
     }
     
     @Override
     public String toString() {
         String representacao = this.estado() + " - " + this.descricaoSolicitacao;
-       return representacao;
+        return representacao;
     }
 
     public String precoFinal() {
-        return ("R$" + this.orcamento);
+        return ("R$ " + this.orcamento);
     }
     
     public Set<Material> listaMateriais() {
         Set<Material> lista = new HashSet<>();
         lista.addAll(lista);
         return lista;
+    }
+
+    protected void setEstado(int e) {
+        this.estado = e;
+        ServeSystem.salvarBanco();
+    }
+    protected void setPagamento(String forma, String inst, String n) {
+        this.formaPag = forma;
+        this.instPag = inst;
+        this.nPag = n;
+        ServeSystem.salvarBanco();
+    }
+    public String getFormaPag() {
+        return this.formaPag;
+    }
+    
+    public String getInstPag() {
+        return this.instPag;
+    }
+    
+    public String getNPag() {
+        return this.nPag;
     }
 
 }

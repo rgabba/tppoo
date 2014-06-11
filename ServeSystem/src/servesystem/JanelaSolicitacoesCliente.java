@@ -77,6 +77,29 @@ public class JanelaSolicitacoesCliente extends MainGUI {
 
     }
     
+    private void janAprovOrcamento(Solicitacao solicitacao) {
+        JanelaOrcamentoCliente jan_orcamentoC = new JanelaOrcamentoCliente(solicitacao);
+        jan_orcamentoC.setSize(250, 250);
+        jan_orcamentoC.setLocationRelativeTo(null);
+        jan_orcamentoC.setResizable(true);
+        jan_orcamentoC.setVisible(true);
+    }
+    private void janAprovExecucao(Solicitacao solicitacao) {
+        JanelasUmBotao jan_orcamentoC = new JanelasUmBotao(solicitacao,"Aguardando execução","Execução concluída");
+        jan_orcamentoC.setSize(250, 80);
+        jan_orcamentoC.setLocationRelativeTo(null);
+        jan_orcamentoC.setResizable(false);
+        jan_orcamentoC.setVisible(true);
+    }
+    
+    private void janPagamento(Solicitacao solicitacao) {
+        JanelaConfirmaPagamento jan_pagamento = new JanelaConfirmaPagamento(solicitacao);
+        jan_pagamento.setSize(450, 160);
+        jan_pagamento.setLocationRelativeTo(null);
+        jan_pagamento.setResizable(false);
+        jan_pagamento.setVisible(true);
+    }
+    
     private void janSolicitacao(Solicitacao solicitacao) {
         switch(solicitacao.estado) {
             case 1:
@@ -86,30 +109,24 @@ public class JanelaSolicitacoesCliente extends MainGUI {
                 JOptionPane.showMessageDialog(null, "Solicitação aberta, favor aguardar conclusão do orçamento.");
                 break;
             case 3:
-                JanelaOrcamentoCliente jan_orcamentoC = new JanelaOrcamentoCliente(solicitacao);
-                jan_orcamentoC.setSize(250, 150);
-                jan_orcamentoC.setLocationRelativeTo(null);
-                jan_orcamentoC.setResizable(false);
-                jan_orcamentoC.setVisible(true);
+                janAprovOrcamento(solicitacao);
                 break;
             case 4:
-                JOptionPane.showMessageDialog(null, "Solicitação aprovada, favor aguardar execução.");
+                JOptionPane.showMessageDialog(null, "Aguardando início da execução.");
                 break;
             case 5:
-                
+                janAprovExecucao(solicitacao);
                 break;
             case 6:
-                
+                janPagamento(solicitacao);
                 break;
             case 7:
-                JOptionPane.showMessageDialog(null, "Fatura emitida");
-                break;
-            case 8:
                 JOptionPane.showMessageDialog(null, "Solicitação encerrada.");
                 break;
-            case 9:
+            case 8:
                 JOptionPane.showMessageDialog(null, "Solicitação cancelada, favor criar nova.");
                 break;
+                
         }
     }
     

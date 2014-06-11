@@ -70,7 +70,7 @@ public class JanelaCliente extends MainGUI {
 
     private void janSolicitacoes(Cliente cliente) {
         JanelaSolicitacoesCliente jan_solicitacoes = new JanelaSolicitacoesCliente(cliente);
-        jan_solicitacoes.setSize(530, 250);
+        jan_solicitacoes.setSize(400, 250);
         jan_solicitacoes.setLocationRelativeTo(null);
         jan_solicitacoes.setResizable(false);
         jan_solicitacoes.setVisible(true);
@@ -81,7 +81,7 @@ public class JanelaCliente extends MainGUI {
         @Override
         public void actionPerformed(ActionEvent evento) {
             if (evento.getSource() == confirma) {
-                if (Pessoa.CPFVerify(text_cpf.getText()) == false) {
+                if (text_cpf.getText().length()!=11 || Pessoa.CPFVerify(text_cpf.getText()) == false) { //corrigido problema do tamanho do CPF
                     JOptionPane.showMessageDialog(null, "O CPF " + text_cpf.getText() + " é inválido, tente novamente");
                 } else {
                     if (ServeSystem.verifyCpfCadastro(text_cpf.getText())) {

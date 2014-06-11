@@ -9,7 +9,7 @@ package servesystem;
  *
  * @author User
  */
-public class Material {
+public class Material implements java.io.Serializable {
 
     protected String nome;
     protected double preco;

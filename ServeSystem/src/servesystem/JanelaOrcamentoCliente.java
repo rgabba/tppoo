@@ -44,7 +44,7 @@ public class JanelaOrcamentoCliente extends MainGUI {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         container.setLayout(new BoxLayout(container, 1));
         
-        rotulo_custoF = new JLabel("Custo final:" + solicitacaoAtual.precoFinal());
+        rotulo_custoF = new JLabel("Custo final: " + solicitacaoAtual.precoFinal());
         
         model = new DefaultListModel<>();
         Iterator it = solicitacaoAtual.listaMaterial.iterator();
@@ -79,11 +79,11 @@ public class JanelaOrcamentoCliente extends MainGUI {
         @Override
         public void actionPerformed(ActionEvent evento) {
             if (evento.getSource() == aceita) {
-                solicitacaoAtual.estado = 4;
+                solicitacaoAtual.setEstado(4);
                 dispose();
             }
             if (evento.getSource() == recusa) {
-                solicitacaoAtual.estado = 9;
+                solicitacaoAtual.setEstado(8);
                 dispose();
             }
         }
