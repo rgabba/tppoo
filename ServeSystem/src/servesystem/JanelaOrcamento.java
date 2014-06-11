@@ -32,7 +32,7 @@ public class JanelaOrcamento extends MainGUI {
     private JTextField text_preco = new JTextField(5);
 
     //Botoes
-    private JButton add = new JButton("Adicionar");
+    private JButton add = new JButton("Adicionar Produto");
     private JButton confirma = new JButton("Confirma");
     private JButton cancela = new JButton("Cancela");
 
