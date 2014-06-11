@@ -27,11 +27,12 @@ public class ServeSystem {
     //tive que arrumar esse outro tipo de dados hashmultimap pra salvar varias solicitações associadas a um cliente
 
     public static void main(String[] args) {
-        JanelaInicial teste = new JanelaInicial();
-        teste.setSize(340, 150);
-        teste.setLocationRelativeTo(null);
-        teste.setResizable(false);
-        teste.setVisible(true);
+        JanelaInicial main = new JanelaInicial();
+        main.setSize(340, 150);
+        //main.setLocationRelativeTo(null); // comentado para abrir no canto superior da tela
+        main.setAlwaysOnTop( true );//Sempre visível
+        main.setResizable(false);
+        main.setVisible(true);
         carregarBanco();
     }
 
