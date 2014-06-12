@@ -97,9 +97,11 @@ public class JanelaOrcamento extends MainGUI {
                         Integer.parseInt(text_horas.getText())));
                 solicitacaoAtual.setMateriais(lista);
                 JOptionPane.showMessageDialog(null, "Orçamento concluído.");
+                JanelaSolicitacoesFunc.lista.updateUI();    
                 dispose();
             }
             if (evento.getSource() == cancela) {
+                JanelaSolicitacoesFunc.lista.updateUI();
                 dispose();
             }
             if (evento.getSource() == add) {

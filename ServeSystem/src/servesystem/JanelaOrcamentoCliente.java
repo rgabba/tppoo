@@ -80,10 +80,12 @@ public class JanelaOrcamentoCliente extends MainGUI {
         public void actionPerformed(ActionEvent evento) {
             if (evento.getSource() == aceita) {
                 solicitacaoAtual.setEstado(4);
+                JOptionPane.showMessageDialog(null, "Orçamento aprovado.");
                 dispose();
             }
             if (evento.getSource() == recusa) {
                 solicitacaoAtual.setEstado(8);
+                JOptionPane.showMessageDialog(null, "Orçamento rejeitado.");
                 dispose();
             }
         }

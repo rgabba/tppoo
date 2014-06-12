@@ -73,10 +73,15 @@ class JanelaConfirmaPagamento extends MainGUI {
         @Override
         public void actionPerformed(ActionEvent evento) {
             if (evento.getSource() == confirma) {
-                solicitacaoAtual.setPagamento(text_c1.getText(),text_c2.getText(),text_c3.getText());
-                solicitacaoAtual.setEstado(7);
-                JOptionPane.showMessageDialog(null, "Dados do pagamento salvos. Agradecemos a preferência!");
-                dispose();
+                if(!text_c1.getText().isEmpty() && !text_c2.getText().isEmpty() && !text_c3.getText().isEmpty()) {
+                    solicitacaoAtual.setPagamento(text_c1.getText(),text_c2.getText(),text_c3.getText());
+                    solicitacaoAtual.setEstado(7);
+                    JOptionPane.showMessageDialog(null, "Dados do pagamento salvos. Agradecemos a preferência!");
+                    dispose();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Campo em branco. Favor preenchê-lo.");
+                }
             }
             if (evento.getSource() == cancela) {
                 dispose();

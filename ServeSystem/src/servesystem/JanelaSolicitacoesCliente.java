@@ -23,7 +23,7 @@ public class JanelaSolicitacoesCliente extends MainGUI {
 
     //Lista
     private JList<Solicitacao> lista;
-    private DefaultListModel<Solicitacao> model;
+    protected static DefaultListModel<Solicitacao> model;
 
     //Botoes
     private JButton confirma = new JButton("Confirma");
@@ -144,14 +144,12 @@ public class JanelaSolicitacoesCliente extends MainGUI {
         public void actionPerformed(ActionEvent evento) {
             if (evento.getSource() == confirma) {
                 janSolicitacao(lista.getSelectedValue());
-                dispose();
             }
             if (evento.getSource() == cancela) {
                 dispose();
             }
             if (evento.getSource() == cria) {
                 janCriaSolicitacao(clienteAtual);
-                dispose();
             }
         }
 

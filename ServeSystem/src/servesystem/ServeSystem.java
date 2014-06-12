@@ -28,9 +28,9 @@ public class ServeSystem {
 
     public static void main(String[] args) {
         JanelaInicial main = new JanelaInicial();
-        main.setSize(340, 150);
-        //main.setLocationRelativeTo(null); // comentado para abrir no canto superior da tela
-        main.setAlwaysOnTop( true );//Sempre visível
+        main.setSize(340, 160);
+        main.setLocationRelativeTo(null); // comentado para abrir no canto superior da tela
+        main.setAlwaysOnTop(false);//Sempre visível
         main.setResizable(false);
         main.setVisible(true);
         carregarBanco();
@@ -124,7 +124,7 @@ public class ServeSystem {
         System.out.println(solicitacao.id);
         salvarBanco();
         return true;
-    }
+    }   
 
     public static Set<Solicitacao> listaSolicitacoesCliente(String cpf) {
         return solicitacoes.get(cpf);

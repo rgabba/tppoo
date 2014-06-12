@@ -79,6 +79,10 @@ public class JanelaCriaSolicitacao extends MainGUI {
         container.add(pan_bot);
 
     }
+    
+    private void add(Solicitacao solicitacao) {
+        JanelaSolicitacoesCliente.model.add(0,solicitacao);
+    }
 
     private class ManipulaButtonField implements ActionListener {
 
@@ -90,13 +94,15 @@ public class JanelaCriaSolicitacao extends MainGUI {
                 Solicitacao solicitacao = new Solicitacao(clienteAtual.cpf, solicitado, descricao);
                 boolean confirm = ServeSystem.addSolicitacao(solicitacao);
                 if (confirm == true) {
-                    JOptionPane.showMessageDialog(null, "Solicitacao concluída.");
+                    add(solicitacao);
+                    JOptionPane.showMessageDialog(null, "Solicitacao cadastrada.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Erro ao cadastrar solicitação, tente novamente");
                 }
                 dispose();
             }
             if (evento.getSource() == cancela) {
+                JOptionPane.showMessageDialog(null, "Solicitacao cancelada.");
                 dispose();
             }
         }

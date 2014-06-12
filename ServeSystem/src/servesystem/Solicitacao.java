@@ -13,7 +13,7 @@ import java.util.*; //para usar o tipo Date
  */
 public class Solicitacao implements java.io.Serializable {
 
-    static int count = ServeSystem.nSolicitacoes(); //cada instancia de solicitacao atribui o valor de count como um id e acresce ele
+    static int count; //cada instancia de solicitacao atribui o valor de count como um id e acresce ele
     protected int id;
     protected String cpfSolicitante;
     protected String profSolicitado;
@@ -42,6 +42,7 @@ public class Solicitacao implements java.io.Serializable {
      */
 
     Solicitacao(String cpfSolicitante, String profSolicitado, String descricao) {
+        this.count = ServeSystem.nSolicitacoes();
         this.cpfSolicitante = cpfSolicitante;
         this.profSolicitado = profSolicitado;
         this.descricaoSolicitacao = descricao;

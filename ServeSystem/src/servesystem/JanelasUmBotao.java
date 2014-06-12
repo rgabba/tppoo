@@ -54,6 +54,7 @@ public class JanelasUmBotao extends MainGUI {
                     String i = String.valueOf(Math.abs(aleatorio.nextInt(1000000)));
                     JOptionPane.showMessageDialog(null, "Número da fatura: " + ("000000" + i).substring(i.length()));
                 }
+                JanelaSolicitacoesFunc.lista.updateUI();
                 dispose();
             }
         }

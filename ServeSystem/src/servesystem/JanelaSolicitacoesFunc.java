@@ -21,7 +21,7 @@ public class JanelaSolicitacoesFunc extends MainGUI {
     //Manipulador de botões
     ManipulaButtonField manipuladorbotao = new ManipulaButtonField();
 
-    private JList<Solicitacao> lista;
+    protected static JList<Solicitacao> lista;
     private DefaultListModel<Solicitacao> model;
 
     //Botoes
@@ -126,7 +126,6 @@ public class JanelaSolicitacoesFunc extends MainGUI {
             if (evento.getSource() == confirma) {
                 lista.getSelectedValue().setTecnico(funcionarioAtual);
                 janelasOrcamento(lista.getSelectedValue());
-                dispose();
             }
             if (evento.getSource() == cancela) {
                 dispose();

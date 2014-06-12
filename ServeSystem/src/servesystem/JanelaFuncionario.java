@@ -76,7 +76,9 @@ public class JanelaFuncionario extends MainGUI {
         public void actionPerformed(ActionEvent evento) {
             if (evento.getSource() == confirma) {
                 if (ServeSystem.verifyNMatCadastro(text_nMat.getText())) {
-                    janSolicitacoesFunc(ServeSystem.nMatCadastrado(text_nMat.getText()));
+                    Funcionario funcionarioAtual = ServeSystem.nMatCadastrado(text_nMat.getText());
+                    JOptionPane.showMessageDialog(null, "Bem vindo " + funcionarioAtual.nome + "!");
+                    janSolicitacoesFunc(funcionarioAtual);
                 } else {
                     JOptionPane.showMessageDialog(null, "Funcionário não cadastrado, favor tentar novamente.");
                     text_nMat.setText("");
