@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servesystem;
 
 import java.util.*; //para usar o tipo Date
 
-/**
- *
- * @author User
- */
 public class Solicitacao implements java.io.Serializable {
 
     static int count; //cada instancia de solicitacao atribui o valor de count como um id e acresce ele

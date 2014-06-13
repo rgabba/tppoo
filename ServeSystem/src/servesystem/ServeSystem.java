@@ -1,36 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servesystem;
 
 import java.util.*;
 import java.io.*;
 import com.google.common.collect.HashMultimap;
 
-/**
- *
- * @author Raul, eu e o zooboomafoo
- */
 public class ServeSystem {
 
-    /**
-     * @param args the command line arguments
-     */
     private static Map<String, Cliente> clientes = new HashMap<>();
 
     private static Map<String, Funcionario> funcionarios = new HashMap<>();
 
     private static HashMultimap<String, Solicitacao> solicitacoes = HashMultimap.create();
 
-    //tive que arrumar esse outro tipo de dados hashmultimap pra salvar varias solicitações associadas a um cliente
-
     public static void main(String[] args) {
         JanelaInicial main = new JanelaInicial();
         main.setSize(340, 160);
-        main.setLocationRelativeTo(null); // comentado para abrir no canto superior da tela
-        main.setAlwaysOnTop(false);//Sempre visível
+        main.setLocationRelativeTo(null);
         main.setResizable(false);
         main.setVisible(true);
         carregarBanco();
@@ -76,20 +62,8 @@ public class ServeSystem {
 
     public static boolean addCliente(Cliente cliente) {
         clientes.put(cliente.cpf, cliente);
-        System.out.println("YAY! Cliente");
-        System.out.println(clientes.size());
-        System.out.println(cliente.cpf);
         salvarBanco();
         return true;
-    }
-
-    public static void mostraClientesTerminal() {
-        int i = 0;
-        while (i < clientes.size()) {
-            Cliente acliente = clientes.get(i);
-            i++;
-            System.out.println(acliente.cpf);
-        }
     }
 
     public static boolean verifyCpfCadastro(String cpf) {
@@ -102,9 +76,6 @@ public class ServeSystem {
 
     public static boolean addFuncionario(Funcionario funcionario) {
         funcionarios.put(funcionario.nMatricula, funcionario);
-        System.out.println("YAY! Funcionario");
-        System.out.println(funcionarios.size());
-        System.out.println(funcionario.nMatricula);
         salvarBanco();
         return true;
     }
@@ -119,9 +90,6 @@ public class ServeSystem {
 
     public static boolean addSolicitacao(Solicitacao solicitacao) {
         solicitacoes.put(solicitacao.cpfSolicitante, solicitacao);
-        System.out.println("YAY! Solicitacao");
-        System.out.println(solicitacoes.size());
-        System.out.println(solicitacao.id);
         salvarBanco();
         return true;
     }   

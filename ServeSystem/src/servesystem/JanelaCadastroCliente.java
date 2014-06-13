@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servesystem;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/**
- *
- * @author User
- */
 public class JanelaCadastroCliente extends MainGUI {
 
     //Manipulador de botões
@@ -119,7 +111,6 @@ public class JanelaCadastroCliente extends MainGUI {
                 } else {
                     JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente, tente novamente");
                 }
-                //!!como vai fazer a gravação de cada instancia? no momento da criação dela aqui ou pelo construtor de Funcionario?
                 dispose();
             }
             if (evento.getSource() == cancela) {
